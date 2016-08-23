@@ -42,11 +42,6 @@ int *changeHealth = &healthLeft;
 teleporter portalPos[26];
 int *timeLeft;
 
-// Unlock number keys
-bool check = false;
-// Check Question Number
-int checkq = 0;
-
 //For main menu
 int menuPointer = 0;
 
@@ -353,136 +348,11 @@ void processUserInput()
 	}
 	if (g_abKeyPressed[K_SPACE])
 	{
-		if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)63)
-		{
-			saveMap();
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 5 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 42)
-			{
-				clearScreen();
-				loadQ(0);
-				checkq = 12;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 16 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 32)
-			{
-				clearScreen();
-				loadQ(1);
-				checkq = 1;//indicate which question has been loaded
-				check = true;//indicate that a question has been loaded
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 33 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 42)
-			{
-				clearScreen();
-				loadQ(2);
-				checkq = 2;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 23 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 75)
-			{
-				clearScreen();
-				loadQ(3);
-				checkq = 3;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 10 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 14)
-			{
-				clearScreen();
-				loadQ(4);
-				checkq = 4;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 20 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 104)
-			{
-				clearScreen();
-				loadQ(5);
-				checkq = 5;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 1 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 117)
-			{
-				clearScreen();
-				loadQ(6);
-				checkq = 6;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 33 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 113)
-			{
-				clearScreen();
-				loadQ(7);
-				checkq = 7;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 17 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 109)
-			{
-				clearScreen();
-				loadQ(8);
-				checkq = 8;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 19 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 109)
-			{
-				clearScreen();
-				loadQ(9);
-				checkq = 9;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 21 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 109)
-			{
-				clearScreen();
-				loadQ(10);
-				checkq = 10;
-				check = true;
-			}
-			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 23 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 109)
-			{
-				clearScreen();
-				loadQ(11);
-				checkq = 11;
-				check = true;
-			}
-		}
+		qCheck();
 	}
 	if (g_abKeyPressed[K_D1] || g_abKeyPressed[K_D2] || g_abKeyPressed[K_D3] || g_abKeyPressed[K_D4])
 	{
-		if (check)//see if a question had already loaded
-		{
-			if (g_abKeyPressed[K_D1])
-			{
-				if (checkq == 5 || checkq == 7 || checkq == 12)
-				{
-					Question_Asn(true);
-					check = false;
-					checkq = 0;
-				}
-			}
-			if (g_abKeyPressed[K_D2])
-			{
-				if (checkq == 2 || checkq == 8)
-				{
-					Question_Asn(true);
-					check = false;
-					checkq = 0;
-				}
-			}
-			if (g_abKeyPressed[K_D3])
-			{
-				if (checkq == 1 || checkq == 6 || checkq == 11)
-				{
-					Question_Asn(true);
-					check = false;
-					checkq = 0;
-				}
-			}
-			if (g_abKeyPressed[K_D4])
-			{
-				if (checkq == 3 || checkq == 4 || checkq == 9 || checkq == 10)
-				{
-					Question_Asn(true);
-					check = false;
-					checkq = 0;
-				}
-			}
-		}
+		asnCheck();
 	}
 }
 

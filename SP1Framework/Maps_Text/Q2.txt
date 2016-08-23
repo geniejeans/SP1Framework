@@ -1,5 +1,6 @@
-What is 62 + 12?
-1. 50
-2. 74
-3. 64
-4. 84
+If you only have one match and entered a dark room containing an oil lamp, some newspaper and
+some kindling wood, which one would you light first?
+1. The oil lamp
+2. The match
+3. The kindling wood
+4. The newspaper

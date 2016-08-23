@@ -8,6 +8,8 @@ extern struct SGameChar g_sChar;
 extern char map[50][150];
 extern enum EKEYS;
 
+void qCheck();
+void asnCheck();
 void saveMap();
 void loadQ(int qNum);
 void Question_Asn(bool isTrue);
