@@ -1,6 +1,6 @@
 #include "PrintMap.h"
 
-void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health)
+void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char(&FogArray)[50][150])
 {
 	double timeToWait = 1.0;
 
@@ -9,11 +9,21 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 	c.X = c.X / 2 - width;
 	c.Y = c.Y / 2 - height;
 	string line = " ";
+	renderArea(height, width, FogArray);
 	for (int row = 0; row <= (height*2); row++)
 	{
-		line = map[row];
-		g_Console.writeToBuffer(c, line);
-		c.Y++;
+		if (enableFog)
+		{
+			line = mapFog[row];
+			g_Console.writeToBuffer(c, line);
+			c.Y++;
+		}
+		else
+		{
+			line = map[row];
+			g_Console.writeToBuffer(c, line);
+			c.Y++;
+		}
 	}
 	if (isMainMenu)
 	{
@@ -97,6 +107,7 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 		}
 
 	}
+
 }
 
 void deleteMap(int width, int height) //Activates at level Teleporter only
@@ -108,8 +119,22 @@ void deleteMap(int width, int height) //Activates at level Teleporter only
 			if (map[row][col] != (char)255)
 			{
 				map[row][col] = (char)255;
+				mapFog[row][col] = (char)255;
 				break;
 			}
+		}
+	}
+}
+
+void renderArea(int height, int width, char(&FogArray)[50][150])
+{
+	int playerX = (g_sChar.m_cLocation.X) - (90 - width);
+	int playerY = (g_sChar.m_cLocation.Y) - (25 - height);
+	for (int row = playerY - 3; row <= playerY + 3; row++)
+	{
+		for (int col = playerX - 3; col <= playerX + 3; col++)
+		{
+			mapFog[row][col] = map[row][col];
 		}
 	}
 }

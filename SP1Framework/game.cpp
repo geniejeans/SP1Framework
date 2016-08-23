@@ -28,6 +28,9 @@ char map[sizeHeight][sizeWidth] = {" ", };
 unsigned int mapSizeWidth = 0;
 unsigned int mapSizeHeight = 0;
 
+bool printFog = false;
+char mapFog[sizeHeight][sizeWidth] = { " ", };
+
 //next map
 int refreshMap = 1;
 int timeRemaining = 60;  //If u all decide to use timer u need to put this as a function requirement (dont edit this number will affect teleport level)
@@ -160,6 +163,7 @@ void update(double dt)
 			break;
     }
 }
+
 //--------------------------------------------------------------
 // Purpose  : Render function is to update the console screen
 //            At this point, you should know exactly what to draw onto the screen.
@@ -191,6 +195,7 @@ void render()
         case S_GAME_TUT:					
 			mapSizeWidth = 124/2;
 			mapSizeHeight = 36/2;
+			printFog = true;
 			refreshMap = 0;
 			renderGame();
             break;
@@ -291,6 +296,7 @@ void moveCharacter()
 	}
 
 }
+
 void processUserInput()
 {
     // quits the game if player hits the escape key
@@ -371,7 +377,7 @@ void renderSplashScreen()  // renders the splash screen
 		loadMap(0);
 	}
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog);
 }
 
 void renderGame()
@@ -422,7 +428,7 @@ void renderMap()
 	}
 
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog);
 }
 
 void renderCharacter()
@@ -469,6 +475,7 @@ void renderFramerate()
 		}
 	}
 }
+
 void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
@@ -484,7 +491,7 @@ void renderMainMenu()
 		loadMap(1);
 	}
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, true, false, &printHealth);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, true, false, &printHealth, printFog, mapFog);
 
 	//Start game if flag is true and hits enter key (put only after the cursor is there)
 	if (g_abKeyPressed[K_ENTER] && menuPointer == 0)
@@ -527,7 +534,7 @@ void renderInstructions()
 		loadMap(2);
 	}
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, true, &printHealth);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, true, &printHealth, printFog, mapFog);
 
 	//Start game if flag is true and hits enter key (put only after the cursor is there)
 	if (g_abKeyPressed[K_ESCAPE])

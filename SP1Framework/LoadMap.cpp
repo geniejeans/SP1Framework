@@ -36,6 +36,7 @@ void loadMap(int level)
 	string line = " ";
 	//clear 2d array / portal locations
 	memset(map, '\0', sizeof(map[0][0]) * 50 * 150);
+	memset(mapFog, '\0', sizeof(mapFog[0][0]) * 50 * 150);
 
 	//store to array
 	ifstream myfile(mapname);
@@ -54,6 +55,7 @@ void loadMap(int level)
 					map[row][i] = (char)254;
 				else
 					map[row][i] = line[i]; //Print the rest as normal
+				mapFog[row][i] = ' ';
 			}
 			row++;
 		}
