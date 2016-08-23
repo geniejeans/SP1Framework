@@ -196,6 +196,7 @@ void render()
 			mapSizeWidth = 88/2;
 			mapSizeHeight = 9/2;
 			renderMainMenu();
+			printFog = false;
 			break;
 		case S_INTRUCTIONS:
 			mapSizeWidth = 116 / 2;
@@ -313,7 +314,7 @@ void moveCharacter()
 		break;
 	case 4: //Teleportals 
 		teleport_player();
-		if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == 'E') && (refreshMap == 2))
+		if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == 'E') && (refreshMap == 4))
 		{
 			g_eGameState = S_GAME_STORY; //Proceed to success
 		}
