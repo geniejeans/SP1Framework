@@ -274,6 +274,7 @@ void moveCharacter()
 	case 0: //Tutorial
 		//Create new header and cpp. Add function here
 		Movement_Tut();
+		Tutorial_Level_HS();
 		if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == 'E') && (refreshMap == 0))
 		{
 			healthLeft = 5; //resetting lives 

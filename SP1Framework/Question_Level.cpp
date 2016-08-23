@@ -299,6 +299,14 @@ void Question_resolved() //deleting doors, ? marks, and resetting the temporary 
 	{
 		map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] = (char)32;
 	}
+	if (map[5][42] = (char)63)
+	{
+		map[5][42] = ' ';
+	}
+	if (map[5][43] = (char)186)
+	{
+		map[5][43] = ' ';
+	}
 	memset(currentMap, '\0', sizeof(currentMap[0][0]) * 50 * 150);;//clean up
 	charLoX = 0;
 	charLoY = 0;
