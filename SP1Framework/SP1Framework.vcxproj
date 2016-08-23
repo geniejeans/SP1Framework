@@ -89,7 +89,9 @@
     <ClCompile Include="PushBox_Movement.cpp" />
     <ClCompile Include="Question_Level.cpp" />
     <ClCompile Include="Question_Movement.cpp" />
+    <ClCompile Include="Render_Story.cpp" />
     <ClCompile Include="Teleport_Movement.cpp" />
+    <ClCompile Include="Tutorial_Level.cpp" />
     <ClCompile Include="Tutorial_Movement.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -104,7 +106,9 @@
     <ClInclude Include="PushBox_Movement.h" />
     <ClInclude Include="Question_Level.h" />
     <ClInclude Include="Question_Movement.h" />
+    <ClInclude Include="Render_Story.h" />
     <ClInclude Include="Teleport_Movement.h" />
+    <ClInclude Include="Tutorial_Level.h" />
     <ClInclude Include="Tutorial_Movement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

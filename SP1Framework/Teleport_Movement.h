@@ -13,7 +13,7 @@ extern unsigned int mapSizeHeight;
 
 extern struct teleporter portalPos[26];
 extern bool newMap;
-
+extern int *changeHealth;
 
 void teleport_player();
 void returnNextPosition(int currentPositionY, int currentPositionX);

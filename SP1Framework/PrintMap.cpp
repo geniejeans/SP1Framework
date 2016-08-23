@@ -14,7 +14,7 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 	{
 		if (enableFog)
 		{
-			line = mapFog[row];
+			line = FogArray[row];
 			g_Console.writeToBuffer(c, line);
 			c.Y++;
 		}
@@ -134,7 +134,7 @@ void renderArea(int height, int width, char(&FogArray)[50][150])
 	{
 		for (int col = playerX - 3; col <= playerX + 3; col++)
 		{
-			mapFog[row][col] = map[row][col];
+			FogArray[row][col] = map[row][col];
 		}
 	}
 }

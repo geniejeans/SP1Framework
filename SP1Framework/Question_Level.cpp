@@ -121,6 +121,11 @@ void asnCheck()
 				check = false;
 				checkq = 0;
 			}
+			else
+			{
+				*changeHealth -= 1;
+				Sleep(250);
+			}
 		}
 		if (g_abKeyPressed[K_D2])
 		{
@@ -129,6 +134,11 @@ void asnCheck()
 				Question_Asn(true);
 				check = false;
 				checkq = 0;
+			}
+			else
+			{
+				*changeHealth -= 1;
+				Sleep(250);
 			}
 		}
 		if (g_abKeyPressed[K_D3])
@@ -139,6 +149,11 @@ void asnCheck()
 				check = false;
 				checkq = 0;
 			}
+			else
+			{
+				*changeHealth -= 1;
+				Sleep(250);
+			}
 		}
 		if (g_abKeyPressed[K_D4])
 		{
@@ -147,6 +162,11 @@ void asnCheck()
 				Question_Asn(true);
 				check = false;
 				checkq = 0;
+			}
+			else
+			{
+				*changeHealth -= 1;
+				Sleep(250);
 			}
 		}
 	}
@@ -278,6 +298,14 @@ void Question_resolved() //deleting doors, ? marks, and resetting the temporary 
 	if (map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] == (char)63)
 	{
 		map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] = (char)32;
+	}
+	if (map[5][42] = (char)63)
+	{
+		map[5][42] = ' ';
+	}
+	if (map[5][43] = (char)186)
+	{
+		map[5][43] = ' ';
 	}
 	memset(currentMap, '\0', sizeof(currentMap[0][0]) * 50 * 150);;//clean up
 	charLoX = 0;

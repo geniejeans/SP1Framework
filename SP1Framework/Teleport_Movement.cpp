@@ -86,6 +86,10 @@ void teleport_player()
 	//Reset map upon stepping into the void
 	if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)255)
 	{
+		if (*changeHealth == 1) 
+		{
+			*changeHealth -= 1; // no more health left 
+		}
 		resetLevel();
 		//newMap = true;
 	}

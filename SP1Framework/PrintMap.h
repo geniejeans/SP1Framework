@@ -12,7 +12,7 @@ extern int *changeHealth;
 extern struct SGameChar  g_sChar;
 extern int menuPointer;
 extern struct SGameChar g_sChar;
-extern char mapFog[50][150];
+//extern char mapFog[50][150];
 
 void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char(&FogArray)[50][150]);
 void deleteMap(int width, int height);
