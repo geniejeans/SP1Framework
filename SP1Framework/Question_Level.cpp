@@ -189,6 +189,7 @@ void saveMap() // save the current state of the map
 void loadQ(int qNum)
 {
 	string mapname = " ";
+	printFog = false;
 	switch (qNum)
 	{
 	case 0:
@@ -310,6 +311,7 @@ void Question_resolved() //deleting doors, ? marks, and resetting the temporary 
 	memset(currentMap, '\0', sizeof(currentMap[0][0]) * 50 * 150);;//clean up
 	charLoX = 0;
 	charLoY = 0;
+	printFog = true;
 }
 
 void reprint_map(int width, int height) // reprint the map back in its original state

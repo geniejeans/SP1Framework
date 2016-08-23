@@ -7,6 +7,7 @@ extern Console g_Console;
 extern struct SGameChar g_sChar;
 extern char map[50][150];
 extern enum EKEYS;
+extern bool printFog;
 
 void qCheck();
 void asnCheck();
