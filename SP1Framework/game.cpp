@@ -45,6 +45,9 @@ int *timeLeft;
 //For main menu
 int menuPointer = 0;
 
+//Print Story
+int printStory = 0;
+
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -106,6 +109,7 @@ void getInput( void )
     g_abKeyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
 	g_abKeyPressed[K_ENTER]  = isKeyPressed(VK_RETURN);
 	g_abKeyPressed[K_LSHIFT] = isKeyPressed(VK_LSHIFT);
+	g_abKeyPressed[K_TAB] = isKeyPressed(VK_TAB);
 	g_abKeyPressed[K_D1] = isKeyPressed(0x31);
 	g_abKeyPressed[K_D2] = isKeyPressed(0x32);
 	g_abKeyPressed[K_D3] = isKeyPressed(0x33);
@@ -158,6 +162,9 @@ void update(double dt)
 		case S_GAME_4:
 			gameplay(); // gameplay logic when we are in the game
 			break;
+		case S_GAME_STORY:
+			renderStory();   //game logic for the story
+			break;
     }
 }
 //--------------------------------------------------------------
@@ -179,6 +186,8 @@ void render()
 			renderSplashScreen();
             break;
 		case S_MAIN_MENU: 
+			*changeHealth = 5;
+			printStory = 0;
 			mapSizeWidth = 88/2;
 			mapSizeHeight = 9/2;
 			renderMainMenu();
@@ -188,36 +197,54 @@ void render()
 			mapSizeHeight = 37 / 2;
 			renderInstructions();
 			break;
-        case S_GAME_TUT:					
+        case S_GAME_TUT:
+			timeToWait = false;
+			printHealth = true;
 			mapSizeWidth = 124/2;
 			mapSizeHeight = 36/2;
 			refreshMap = 0;
 			renderGame();
             break;
 		case S_GAME_1:
+			timeToWait = false;
+			printHealth = true;
 			mapSizeWidth = 124 / 2;
 			mapSizeHeight = 36 / 2;
 			refreshMap = 1;
 			renderGame();
 			break;
 		case S_GAME_2:
+			timeToWait = false;
+			printHealth = true;
 			mapSizeWidth = 126 / 2;
 			mapSizeHeight = 36 / 2;
 			refreshMap = 2;
 			renderGame();
 			break;
 		case S_GAME_3:
+			timeToWait = false;
+			printHealth = true;
 			mapSizeWidth = 124 / 2;
 			mapSizeHeight = 36 / 2;
 			refreshMap = 3;
 			renderGame();
 			break;
 		case S_GAME_4:
+			timeToWait = true;
+			printHealth = true;
 			mapSizeWidth = 124 / 2;
 			mapSizeHeight = 34 / 2;
 			refreshMap = 4;
 			renderGame();
 			break;
+		case S_GAME_STORY:
+			timeToWait = false;
+			printHealth = false;
+			mapSizeWidth = 124 / 2;
+			mapSizeHeight = 34 / 2;
+			renderStory();
+			break;
+
     }
     renderFramerate();  // renders debug information, frame rate, elapsed time, etc
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
@@ -250,8 +277,7 @@ void moveCharacter()
 		if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == 'E') && (refreshMap == 0))
 		{
 			healthLeft = 5; //resetting lives 
-			g_eGameState = S_GAME_1; //Proceed to level 1
-			newMap = true;
+			g_eGameState = S_GAME_STORY; //Proceed to level 1
 		}
 		break;
 	case 1: //Levers
@@ -259,16 +285,14 @@ void moveCharacter()
 		doorMapChanges_HS();
 		if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == 'E') && (refreshMap == 1))
 		{
-			g_eGameState = S_GAME_2; //Proceed to level 2
-			newMap = true;
+			g_eGameState = S_GAME_STORY; //Proceed to level 2
 		}
 		break;
 	case 2: //Questions
 		qMovement();
 		if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == 'E') && (refreshMap == 2))
 		{
-			g_eGameState = S_GAME_3; //Proceed to level 3
-			newMap = true;
+			g_eGameState = S_GAME_STORY; //Proceed to level 3
 		}
 		break;
 	case 3: //Boxes
@@ -276,14 +300,15 @@ void moveCharacter()
 		doorMapChanges_J();
 	    if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == 'E') && (refreshMap == 3))
 		{
-		//refreshMap = 4;
-		g_eGameState = S_GAME_4; //Proceed to level 4
-		newMap = true;
+		g_eGameState = S_GAME_STORY; //Proceed to level 4
 		} 
 		break;
 	case 4: //Teleportals 
 		teleport_player();
-		//Create new header and cpp. Add your function here
+		if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == 'E') && (refreshMap == 2))
+		{
+			g_eGameState = S_GAME_STORY; //Proceed to success
+		}
 		break;
 	default:
 		cout << "Character cannot move!!";
@@ -489,8 +514,7 @@ void renderMainMenu()
 	//Start game if flag is true and hits enter key (put only after the cursor is there)
 	if (g_abKeyPressed[K_ENTER] && menuPointer == 0)
 	{
-		newMap = true;
-		g_eGameState = S_GAME_TUT;// sets the state to start
+		g_eGameState = S_GAME_STORY;// sets the state to start
 	}
 	else if (g_abKeyPressed[K_ENTER] && menuPointer == 1)
 	{
@@ -539,15 +563,15 @@ void renderInstructions()
 
 void resetLevel() //Causes reset
 {
-	if (healthLeft != 1)
+	if (healthLeft > 1)
 	{
-		*changeHealth -= 1; //For health testing. Can delete 
+		*changeHealth -= 1; 
 		newMap = true;
 		renderMap();
 		Sleep(250);
 	}
 	if (healthLeft == 0)
 	{
-		//Game over here!
+		g_eGameState = S_GAME_STORY;
 	}
 }

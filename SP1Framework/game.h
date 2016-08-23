@@ -14,6 +14,7 @@
 #include "Question_Level.h"
 #include "Question_Movement.h"
 #include "Tutorial_Movement.h"
+#include "Render_Story.h"
 //#include "CollisionDetection.h"
 #include <fstream> //File opening
 #include <string>
@@ -40,6 +41,7 @@ enum EKEYS
 	K_D3,
 	K_D4,
 	K_LSHIFT,
+	K_TAB,
 	K_COUNT //Put this last thx
 };
 
@@ -54,6 +56,7 @@ enum EGAMESTATES
 	S_GAME_2,		//Level 2
 	S_GAME_3,		//Level 3
 	S_GAME_4,		//Level 4
+	S_GAME_STORY,   //Story
     S_COUNT
 };
 

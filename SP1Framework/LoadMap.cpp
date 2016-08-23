@@ -29,6 +29,30 @@ void loadMap(int level)
 		case 7:
 			mapname = "Maps_Levels/Teleportal.txt"; //Level 4
 			break;
+		case 8:
+			mapname = "Maps_Text/Story/Start.txt";
+			break;
+		case 9:
+			mapname = "Maps_Text/Story/Tutorial.txt";
+			break;
+		case 10:
+			mapname = "Maps_Text/Story/Levers.txt";
+			break;
+		case 11:
+			mapname = "Maps_Text/Story/Questions.txt";
+			break;
+		case 12:
+			mapname = "Maps_Text/Story/Boxes.txt";
+			break;
+		case 13:
+			mapname = "Maps_Text/Story/Teleporters.txt";
+			break;
+		case 14:
+			mapname = "Maps_Text/Story/Succeded.txt";
+			break;
+		case 15:
+			mapname = "Maps_Text/Story/Failed.txt";
+			break;
 	}
 	
 	
