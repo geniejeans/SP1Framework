@@ -121,6 +121,11 @@ void asnCheck()
 				check = false;
 				checkq = 0;
 			}
+			else
+			{
+				*changeHealth -= 1;
+				Sleep(250);
+			}
 		}
 		if (g_abKeyPressed[K_D2])
 		{
@@ -129,6 +134,11 @@ void asnCheck()
 				Question_Asn(true);
 				check = false;
 				checkq = 0;
+			}
+			else
+			{
+				*changeHealth -= 1;
+				Sleep(250);
 			}
 		}
 		if (g_abKeyPressed[K_D3])
@@ -139,6 +149,11 @@ void asnCheck()
 				check = false;
 				checkq = 0;
 			}
+			else
+			{
+				*changeHealth -= 1;
+				Sleep(250);
+			}
 		}
 		if (g_abKeyPressed[K_D4])
 		{
@@ -147,6 +162,11 @@ void asnCheck()
 				Question_Asn(true);
 				check = false;
 				checkq = 0;
+			}
+			else
+			{
+				*changeHealth -= 1;
+				Sleep(250);
 			}
 		}
 	}
