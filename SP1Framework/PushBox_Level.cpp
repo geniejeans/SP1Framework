@@ -1,7 +1,8 @@
 #include "PushBox_Level.h"
-int door = 0;
+
 void doorMapChanges_J()
 {
+	int door = 0;
 	//Doors:
 	if (map[6][106] == (char)254 && door == 0) //Door1 
 	{
