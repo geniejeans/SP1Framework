@@ -459,7 +459,7 @@ void renderMap()
 			g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2 + 56;
 			g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2 + 14;
 			timeToWait = true;
-			timeRemaining = 40;
+			timeRemaining = 50;
 			break;
 		default:
 			cout << "THIS IS AN ERROR MESSAGE FOR BEING OUT OF SIZE!!!";
@@ -621,7 +621,7 @@ void renderOptions()
 }
 void resetLevel() //Causes reset
 {
-	if (healthLeft > 1)
+	if (healthLeft >= 1)
 	{
 		*changeHealth -= 1; 
 		newMap = true;
