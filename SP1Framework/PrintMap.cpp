@@ -135,7 +135,7 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 		{
 			for (int i = *changeHealth; i > 0; i--)
 			{
-				g_Console.writeToBuffer(c, (char)3, 0x0C);
+				g_Console.writeToBuffer(c, (char)3, 0x0C); //Red color hearts
 				c.X += 2;
 			}
 		}
@@ -188,15 +188,18 @@ void renderArea(int height, int width, char(&FogArray)[50][150])
 			}
 			else
 			{
-				FogArray[row][col] = map[row][col];
+				if (map[row + 1][playerX - 1] == (char)219 && col == playerX - ceil(walls / 2.0f))
+					continue;
+				if (map[row + 1][playerX + 1] == (char)219 && col == playerX + ceil(walls / 2.0f))
+					continue;
+				else
+					FogArray[row][col] = map[row][col];
 			}
 			if (map[row][playerX] == (char)219)
 				wall = true;
 		}
 		if (wall)
-		{
 			break;
-		}
 		walls++;
 	}
 	wall = false;
@@ -204,7 +207,6 @@ void renderArea(int height, int width, char(&FogArray)[50][150])
 
 	for (int row = playerY; row <= playerY + 3; row++) //South v
 	{
-
 		for (int col = playerX - ceil(walls / 2.0f); col <= playerX + ceil(walls / 2.0f); col++)
 		{
 
@@ -215,67 +217,80 @@ void renderArea(int height, int width, char(&FogArray)[50][150])
 			}
 			else
 			{
-				FogArray[row][col] = map[row][col];
+				if (map[row - 1][playerX - 1] == (char)219 && col == playerX - ceil(walls / 2.0f))
+					continue;
+				if (map[row - 1][playerX + 1] == (char)219 && col == playerX + ceil(walls / 2.0f))
+					continue;
+				else
+					FogArray[row][col] = map[row][col];
 			}
 			if (map[row][playerX] == (char)219)
 				wall = true;
 		}
 		if (wall)
-		{
 			break;
-		}
 		walls++;
 	}
 	wall = false;
 	walls = 0;
 
-	for (int row = playerX; row <= playerX + 3; row++) //East >
+	for (int row = playerX; row <= playerX + 5; row++) //East >
 	{
-
+		if (walls > 3) // Limit each sides to be 1.5 ceil == 2 so 2 on either sides from player (for fov)
+			walls = 3;
 		for (int col = playerY - ceil(walls / 2.0f); col <= playerY + ceil(walls / 2.0f); col++)
 		{
-			if (map[playerY][row] == ' ')
+			if (map[playerY][row] == ' ') //Reduce range fov in corridors
 			{
 				FogArray[playerY - 1][row] = map[playerY-1][row];
+				FogArray[playerY][row] = map[playerY][row];
 				FogArray[playerY + 1][row] = map[playerY + 1][row];
 			}
 			else
 			{
-				FogArray[col][row] = map[col][row];
+				if (map[playerY - 1][row - 1] == (char)219 && col == playerY - ceil(walls / 2.0f))
+					continue;
+				else if (map[playerY + 1][row - 1] == (char)219 && col == playerY + ceil(walls / 2.0f))
+					continue;
+				else
+					FogArray[col][row] = map[col][row];
 			}
 			if (map[playerY][row] == (char)219 || map[playerY][row] == (char)186)
 				wall = true;
 		}
 		if (wall)
-		{
 			break;
-		}
 		walls++;
 	}
 	wall = false;
 	walls = 0;
 
-	for (int row = playerX; row >= playerX - 3; row--) //West <
+	for (int row = playerX; row >= playerX - 5; row--) //West <
 	{
-
+		if (walls > 3) // Limit each sides to be 1.5 ceil == 2 so 2 on either sides from player (for fov)
+			walls = 3;
 		for (int col = playerY - ceil(walls / 2.0f); col <= playerY + ceil(walls / 2.0f); col++)
 		{
 			if (map[playerY][row] == ' ')
 			{
 				FogArray[playerY - 1][row] = map[playerY - 1][row];
+				FogArray[playerY][row] = map[playerY][row];
 				FogArray[playerY + 1][row] = map[playerY + 1][row];
 			}
 			else
 			{
-				FogArray[col][row] = map[col][row];
+				if (map[playerY - 1][row + 1] == (char)219 && col == playerY - ceil(walls / 2.0f))
+					continue;
+				else if (map[playerY + 1][row + 1] == (char)219 && col == playerY + ceil(walls / 2.0f))
+					continue;
+				else
+					FogArray[col][row] = map[col][row];
 			}
 			if (map[playerY][row] == (char)219 || map[playerY][row] == (char)186)
 				wall = true;
 		}
 		if (wall)
-		{
 			break;
-		}
 		walls++;
 	}
 	wall = false;

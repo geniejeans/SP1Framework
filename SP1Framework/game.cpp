@@ -590,7 +590,7 @@ void renderInstructions()
 }
 void renderOptions()
 {
-	loadMap(1);
+	//loadMap(1); //May i know who put this here its loading the file 100 times per second
 	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, true);
 	if (g_dBounceTime > g_dElapsedTime) //This is before any button press
 		return;
@@ -609,6 +609,7 @@ void renderOptions()
 		toggleFog = true;
 		newMap = true;
 		g_eGameState = S_MAIN_MENU;
+		g_dBounceTime = g_dElapsedTime + 0.25;
 	}
 		
 	if (g_abKeyPressed[K_ENTER] && optionPointer == 1)
@@ -616,6 +617,7 @@ void renderOptions()
 		toggleFog = false;
 		newMap = true;
 		g_eGameState = S_MAIN_MENU;
+		g_dBounceTime = g_dElapsedTime + 0.25;
 	}
 
 }

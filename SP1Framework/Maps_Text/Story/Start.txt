@@ -11,8 +11,8 @@
   #################################      so there are literally no guards,                     
                 #####         #####      just puzzle locks.                                    
                 #####         #####      In other words,                                       
-                #####         #####      you get to put on an explorer's hat                   
-                #####         #####      and act like Indiana Jones                            
+                #####         #####      you get to put on an explorer's hat, camping torch,   
+                #####         #####      auto mapper and act like Indiana Jones                
                 #####         #####      without looking like an idiot!                        
   ###################         #####      For treasure!                                         
   ###################         #####                                                            
