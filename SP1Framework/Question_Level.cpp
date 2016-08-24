@@ -177,6 +177,10 @@ void asnCheck()
 				Sleep(250);
 			}
 		}
+		if (*changeHealth == 0)
+		{
+			resetLevel();
+		}
 	}
 }
 
@@ -319,7 +323,7 @@ void Question_resolved() //deleting doors, ? marks, and resetting the temporary 
 	memset(currentMap, '\0', sizeof(currentMap[0][0]) * 50 * 150);;//clean up
 	charLoX = 0;
 	charLoY = 0;
-	printFog = true;
+	printFog = toggleFog;
 }
 
 void reprint_map(int width, int height) // reprint the map back in its original state
