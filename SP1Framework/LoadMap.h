@@ -7,6 +7,7 @@ using namespace std;
 
 extern char map[50][150];
 extern char mapFog[50][150];
+extern int checkm;
 
 extern struct teleporter portalPos[26];
 

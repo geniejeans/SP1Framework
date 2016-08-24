@@ -3,3 +3,4 @@ How much dirt is there in a hole 5 meters deep, 3 meters long and 4 meters wide?
 2.15 meter cube
 3.12 meter cube
 4.None at all
+Hint: It's a hole

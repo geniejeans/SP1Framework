@@ -1,6 +1,7 @@
 If you only have one match and entered a dark room containing an oil lamp, some newspaper and
 some kindling wood, which one would you light first?
 1. The oil lamp
-2. The match
-3. The kindling wood
-4. The newspaper
+2. The kindling wood
+3. The newspaper
+4. None of the above
+Hint: In order to light something, what do you need?
