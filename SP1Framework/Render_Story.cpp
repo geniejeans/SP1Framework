@@ -88,5 +88,5 @@ void renderStory()
 			newMap = true;
 		}
 	}
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth,false,mapFog);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth,false,mapFog, false);
 }

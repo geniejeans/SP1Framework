@@ -1,6 +1,6 @@
 #include "PrintMap.h"
 
-void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char(&FogArray)[50][150])
+void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char(&FogArray)[50][150], bool options)
 {
 	double timeToWait = 1.0;
 
@@ -35,6 +35,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
 			c.Y++;
+			g_Console.writeToBuffer(c, "Options!", 0x0A);
+			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
 		}
 		else if (menuPointer == 1)
@@ -43,6 +45,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "-> Instructions!", 0x0A);
 			c.Y++;
+			g_Console.writeToBuffer(c, "Options!", 0x0A);
+			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
 		}
 		else if (menuPointer == 2)
@@ -50,6 +54,18 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			g_Console.writeToBuffer(c, "Start Game!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "-> Options!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
+		}
+		else if (menuPointer == 3)
+		{
+			g_Console.writeToBuffer(c, "Start Game!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Options!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "-> Quit Game!", 0x0C);
 		}
@@ -60,6 +76,24 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 		c.X += width - 9;
 		c.Y++;
 		g_Console.writeToBuffer(c, "Escape to go back!", 0x0A);
+	}
+	if (options)
+	{
+		c.X += 44 - 10;
+		c.Y++;
+		if (optionPointer == 0)
+		{
+			g_Console.writeToBuffer(c, "-> Fog: ON", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Fog: OFF", 0x0A);
+		}
+		else if (optionPointer == 1)
+		{
+			g_Console.writeToBuffer(c, "Fog: ON", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "-> Fog: OFF", 0x0A);
+		}
+
 	}
 	if (*timer == true)
 	{
