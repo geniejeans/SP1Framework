@@ -47,6 +47,10 @@ int *timeLeft;
 
 //For main menu
 int menuPointer = 0;
+//For options
+int optionPointer = 0;
+//On and off fog 
+bool toggleFog;
 
 //Print Story
 int printStory = 0;
@@ -204,11 +208,18 @@ void render()
 			renderInstructions();
 			printFog = false;
 			break;
+		case S_OPTIONS:
+			mapSizeWidth = 88 / 2;
+			mapSizeHeight = 9 / 2;
+			renderOptions();
+			printFog = false;
+			break;
         case S_GAME_TUT:
 			timeToWait = false;
 			printHealth = true;
 			mapSizeWidth = 124/2;
 			mapSizeHeight = 36/2;
+			printFog = false;
 			refreshMap = 0;
 			renderGame();
             break;
@@ -217,9 +228,9 @@ void render()
 			printHealth = true;
 			mapSizeWidth = 124 / 2;
 			mapSizeHeight = 36 / 2;
+			printFog = toggleFog;
 			refreshMap = 1;
 			renderGame();
-			printFog = true;
 			break;
 		case S_GAME_2:
 			timeToWait = false;
@@ -406,7 +417,7 @@ void renderSplashScreen()  // renders the splash screen
 		loadMap(0);
 	}
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false);
 }
 
 void renderGame()
@@ -457,7 +468,7 @@ void renderMap()
 	}
 
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false);
 }
 
 void renderCharacter()
@@ -520,7 +531,7 @@ void renderMainMenu()
 		loadMap(1);
 	}
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, true, false, &printHealth, printFog, mapFog);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, true, false, &printHealth, printFog, mapFog,false);
 
 	//Start game if flag is true and hits enter key (put only after the cursor is there)
 	if (g_abKeyPressed[K_ENTER] && menuPointer == 0)
@@ -535,6 +546,12 @@ void renderMainMenu()
 
 	// quits the game if player hits the escape key
 	if (g_abKeyPressed[K_ENTER] && menuPointer == 2)
+	{
+		newMap = true;
+		g_eGameState = S_OPTIONS;// sets the state to options
+		g_dBounceTime = g_dElapsedTime + 0.25;
+	}
+	if (g_abKeyPressed[K_ENTER] && menuPointer == 3)
 		g_bQuitGame = true;
 	
 	if (g_dBounceTime > g_dElapsedTime) //This is before any button press
@@ -545,7 +562,7 @@ void renderMainMenu()
 		menuPointer--;
 		g_dBounceTime = g_dElapsedTime + 0.25;
 	}
-	if (g_abKeyPressed[K_DOWN] && menuPointer != 2)
+	if (g_abKeyPressed[K_DOWN] && menuPointer != 3)
 	{
 		menuPointer++;
 		g_dBounceTime = g_dElapsedTime + 0.25;
@@ -562,7 +579,7 @@ void renderInstructions()
 		loadMap(2);
 	}
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, true, &printHealth, printFog, mapFog);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, true, &printHealth, printFog, mapFog, false);
 
 	//Start game if flag is true and hits enter key (put only after the cursor is there)
 	if (g_abKeyPressed[K_ESCAPE])
@@ -571,7 +588,37 @@ void renderInstructions()
 		g_eGameState = S_MAIN_MENU;// sets the state to start
 	}
 }
+void renderOptions()
+{
+	loadMap(1);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, true);
+	if (g_dBounceTime > g_dElapsedTime) //This is before any button press
+		return;
+	if (g_abKeyPressed[K_UP] && optionPointer != 0)
+	{
+		optionPointer--;
+		g_dBounceTime = g_dElapsedTime + 0.25;
+	}
+	if (g_abKeyPressed[K_DOWN] && optionPointer != 1)
+	{
+		optionPointer++;
+		g_dBounceTime = g_dElapsedTime + 0.25;
+	}
+	if (g_abKeyPressed[K_ENTER] && optionPointer == 0)
+	{
+		toggleFog = true;
+		newMap = true;
+		g_eGameState = S_MAIN_MENU;
+	}
+		
+	if (g_abKeyPressed[K_ENTER] && optionPointer == 1)
+	{
+		toggleFog = false;
+		newMap = true;
+		g_eGameState = S_MAIN_MENU;
+	}
 
+}
 void resetLevel() //Causes reset
 {
 	if (healthLeft >= 1)

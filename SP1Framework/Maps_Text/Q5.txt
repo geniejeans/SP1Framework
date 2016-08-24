@@ -4,3 +4,4 @@ Which way does the smoke blow?
 2.South
 3.West
 4.South-West
+Hint: The train

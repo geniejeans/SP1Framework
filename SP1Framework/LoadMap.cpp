@@ -16,12 +16,14 @@ void loadMap(int level)
 			break;
 		case 3:
 			mapname = "Maps_Levels/Tutorial.txt"; 
+			checkm = 0;
 			break;
 		case 4: 
 			mapname = "Maps_Levels/Levers.txt"; //Level 1
 			break;
 		case 5: 
 			mapname = "Maps_Levels/Questions.txt"; //Level 2
+			checkm = 2;
 			break;
 		case 6:
 			mapname = "Maps_Levels/Boxes.txt"; //Level 3

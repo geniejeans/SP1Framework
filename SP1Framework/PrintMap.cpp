@@ -1,6 +1,6 @@
 #include "PrintMap.h"
 
-void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char(&FogArray)[50][150])
+void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char(&FogArray)[50][150], bool options)
 {
 	double timeToWait = 1.0;
 
@@ -35,6 +35,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
 			c.Y++;
+			g_Console.writeToBuffer(c, "Options!", 0x0A);
+			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
 		}
 		else if (menuPointer == 1)
@@ -43,6 +45,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "-> Instructions!", 0x0A);
 			c.Y++;
+			g_Console.writeToBuffer(c, "Options!", 0x0A);
+			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
 		}
 		else if (menuPointer == 2)
@@ -50,6 +54,18 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			g_Console.writeToBuffer(c, "Start Game!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "-> Options!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
+		}
+		else if (menuPointer == 3)
+		{
+			g_Console.writeToBuffer(c, "Start Game!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Options!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "-> Quit Game!", 0x0C);
 		}
@@ -60,6 +76,24 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 		c.X += width - 9;
 		c.Y++;
 		g_Console.writeToBuffer(c, "Escape to go back!", 0x0A);
+	}
+	if (options)
+	{
+		c.X += 44 - 10;
+		c.Y++;
+		if (optionPointer == 0)
+		{
+			g_Console.writeToBuffer(c, "-> Fog: ON", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Fog: OFF", 0x0A);
+		}
+		else if (optionPointer == 1)
+		{
+			g_Console.writeToBuffer(c, "Fog: ON", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "-> Fog: OFF", 0x0A);
+		}
+
 	}
 	if (*timer == true)
 	{
@@ -129,7 +163,7 @@ void deleteMap(int width, int height) //Activates at level Teleporter only
 void renderArea(int height, int width, char(&FogArray)[50][150])
 {
 	bool cornerwalls = false;
-	int walls = 0;
+	float walls = 0.0f;
 	bool wall = false;
 	bool walltemp = false;
 	int playerX = (g_sChar.m_cLocation.X) - (90 - width);
@@ -145,11 +179,19 @@ void renderArea(int height, int width, char(&FogArray)[50][150])
 	for (int row = playerY; row >= playerY - 3; row--) //North ^
 	{
 		
-		for (int col = playerX + ceil(-walls / 2); col <= playerX + (walls / 2); col++)
+		for (int col = playerX - ceil(walls / 2.0f); col <= playerX + ceil(walls / 2.0f); col++)
 		{
+			if (map[row][playerX] == ' ')
+			{
+				FogArray[row][playerX - 1] = map[row][playerX - 1];
+				FogArray[row][playerX + 1] = map[row][playerX + 1];
+			}
+			else
+			{
 				FogArray[row][col] = map[row][col];
-				if (map[row][playerX] == (char)219)
-					wall = true;
+			}
+			if (map[row][playerX] == (char)219)
+				wall = true;
 		}
 		if (wall)
 		{
@@ -160,12 +202,21 @@ void renderArea(int height, int width, char(&FogArray)[50][150])
 	wall = false;
 	walls = 0;
 
-	for (int row = playerY; row <= playerY + 3; row++) //South ^
+	for (int row = playerY; row <= playerY + 3; row++) //South v
 	{
 
-		for (int col = playerX + ceil(-walls / 2); col <= playerX + (walls / 2); col++)
+		for (int col = playerX - ceil(walls / 2.0f); col <= playerX + ceil(walls / 2.0f); col++)
 		{
-			FogArray[row][col] = map[row][col];
+
+			if (map[row][playerX] == ' ')
+			{
+				FogArray[row][playerX - 1] = map[row][playerX - 1];
+				FogArray[row][playerX + 1] = map[row][playerX + 1];
+			}
+			else
+			{
+				FogArray[row][col] = map[row][col];
+			}
 			if (map[row][playerX] == (char)219)
 				wall = true;
 		}
@@ -181,10 +232,18 @@ void renderArea(int height, int width, char(&FogArray)[50][150])
 	for (int row = playerX; row <= playerX + 3; row++) //East >
 	{
 
-		for (int col = playerY + ceil(-walls / 2); col <= playerY + (walls / 2); col++)
+		for (int col = playerY - ceil(walls / 2.0f); col <= playerY + ceil(walls / 2.0f); col++)
 		{
-			FogArray[col][row] = map[col][row];
-			if (map[col][playerX] == (char)219)
+			if (map[playerY][row] == ' ')
+			{
+				FogArray[playerY - 1][row] = map[playerY-1][row];
+				FogArray[playerY + 1][row] = map[playerY + 1][row];
+			}
+			else
+			{
+				FogArray[col][row] = map[col][row];
+			}
+			if (map[playerY][row] == (char)219 || map[playerY][row] == (char)186)
 				wall = true;
 		}
 		if (wall)
@@ -199,10 +258,18 @@ void renderArea(int height, int width, char(&FogArray)[50][150])
 	for (int row = playerX; row >= playerX - 3; row--) //West <
 	{
 
-		for (int col = playerY + ceil(-walls / 2); col <= playerY + (walls / 2); col++)
+		for (int col = playerY - ceil(walls / 2.0f); col <= playerY + ceil(walls / 2.0f); col++)
 		{
-			FogArray[col][row] = map[col][row];
-			if (map[col][playerX] == (char)219)
+			if (map[playerY][row] == ' ')
+			{
+				FogArray[playerY - 1][row] = map[playerY - 1][row];
+				FogArray[playerY + 1][row] = map[playerY + 1][row];
+			}
+			else
+			{
+				FogArray[col][row] = map[col][row];
+			}
+			if (map[playerY][row] == (char)219 || map[playerY][row] == (char)186)
 				wall = true;
 		}
 		if (wall)

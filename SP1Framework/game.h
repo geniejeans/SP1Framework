@@ -52,6 +52,7 @@ enum EGAMESTATES
     S_SPLASHSCREEN,
 	S_MAIN_MENU,
 	S_INTRUCTIONS,
+	S_OPTIONS,
     S_GAME_TUT,			//Level tutorial 
 	S_GAME_1,		//Level 1
 	S_GAME_2,		//Level 2
@@ -97,6 +98,7 @@ void renderToScreen();      // dump the contents of the buffer to the screen, on
 
 void renderMainMenu();      // renders the main menu
 void renderInstructions();  // Instructions page
+void renderOptions();
 
 void resetLevel();			// Reset the game level
 
