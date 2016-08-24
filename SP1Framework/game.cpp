@@ -142,10 +142,10 @@ void update(double dt)
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : 
-			splashScreenWait(); // game logic for the splash screen			 
+			splashScreenWait(); // game logic for the splash screen
             break;
 		case S_MAIN_MENU: 
-			renderMainMenu();	// game logic for the main screen  
+			renderMainMenu();	// game logic for the main screen
 			break;
 		case S_INTRUCTIONS:
 			renderInstructions();
@@ -209,7 +209,6 @@ void render()
 			printHealth = true;
 			mapSizeWidth = 124/2;
 			mapSizeHeight = 36/2;
-			printFog = true;
 			refreshMap = 0;
 			renderGame();
             break;
@@ -220,6 +219,7 @@ void render()
 			mapSizeHeight = 36 / 2;
 			refreshMap = 1;
 			renderGame();
+			printFog = true;
 			break;
 		case S_GAME_2:
 			timeToWait = false;

@@ -128,13 +128,89 @@ void deleteMap(int width, int height) //Activates at level Teleporter only
 
 void renderArea(int height, int width, char(&FogArray)[50][150])
 {
+	bool cornerwalls = false;
+	int walls = 0;
+	bool wall = false;
+	bool walltemp = false;
 	int playerX = (g_sChar.m_cLocation.X) - (90 - width);
 	int playerY = (g_sChar.m_cLocation.Y) - (25 - height);
-	for (int row = playerY - 3; row <= playerY + 3; row++)
+	/*for (int row = playerY - 3; row <= playerY + 3; row++)
 	{
 		for (int col = playerX - 3; col <= playerX + 3; col++)
 		{
 			FogArray[row][col] = map[row][col];
 		}
+	}*/
+
+	for (int row = playerY; row >= playerY - 3; row--) //North ^
+	{
+		
+		for (int col = playerX + ceil(-walls / 2); col <= playerX + (walls / 2); col++)
+		{
+				FogArray[row][col] = map[row][col];
+				if (map[row][playerX] == (char)219)
+					wall = true;
+		}
+		if (wall)
+		{
+			break;
+		}
+		walls++;
 	}
+	wall = false;
+	walls = 0;
+
+	for (int row = playerY; row <= playerY + 3; row++) //South ^
+	{
+
+		for (int col = playerX + ceil(-walls / 2); col <= playerX + (walls / 2); col++)
+		{
+			FogArray[row][col] = map[row][col];
+			if (map[row][playerX] == (char)219)
+				wall = true;
+		}
+		if (wall)
+		{
+			break;
+		}
+		walls++;
+	}
+	wall = false;
+	walls = 0;
+
+	for (int row = playerX; row <= playerX + 3; row++) //East >
+	{
+
+		for (int col = playerY + ceil(-walls / 2); col <= playerY + (walls / 2); col++)
+		{
+			FogArray[col][row] = map[col][row];
+			if (map[col][playerX] == (char)219)
+				wall = true;
+		}
+		if (wall)
+		{
+			break;
+		}
+		walls++;
+	}
+	wall = false;
+	walls = 0;
+
+	for (int row = playerX; row >= playerX - 3; row--) //West <
+	{
+
+		for (int col = playerY + ceil(-walls / 2); col <= playerY + (walls / 2); col++)
+		{
+			FogArray[col][row] = map[col][row];
+			if (map[col][playerX] == (char)219)
+				wall = true;
+		}
+		if (wall)
+		{
+			break;
+		}
+		walls++;
+	}
+	wall = false;
+	walls = 0;
 }
