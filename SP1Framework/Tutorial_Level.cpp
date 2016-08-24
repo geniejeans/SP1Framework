@@ -2,7 +2,7 @@
 
 void Tutorial_Level_HS()
 {
-	if (map[2][20] == (char)49 && map[8][20] == (char)49) //Door1 
+	if (map[2][19] == (char)49 && map[8][19] == (char)49) //Door1 
 	{
 		map[5][22] = ' ';
 	}

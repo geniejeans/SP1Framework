@@ -17,8 +17,18 @@ void leversMovement_HS()
 		{
 			if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)186)
 			{
-				g_sChar.m_cLocation.Y--;
-				bSomethingHappened = true;
+
+				if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+')
+				{
+					*changeHealth -= 1;
+					g_sChar.m_cLocation.Y--;
+					bSomethingHappened = true;
+				}
+				else
+				{
+					g_sChar.m_cLocation.Y--;
+					bSomethingHappened = true;
+				}
 			}
 		}
 
@@ -29,8 +39,17 @@ void leversMovement_HS()
 		{
 			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != (char)186)
 			{
-				g_sChar.m_cLocation.X--;
-				bSomethingHappened = true;
+				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == '+')
+				{
+					*changeHealth -= 1;
+					g_sChar.m_cLocation.X--;
+					bSomethingHappened = true;
+				}
+				else
+				{
+					g_sChar.m_cLocation.X--;
+					bSomethingHappened = true;
+				}
 			}
 		}
 	}
@@ -40,8 +59,17 @@ void leversMovement_HS()
 		{
 			if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)186)
 			{
-				g_sChar.m_cLocation.Y++;
-				bSomethingHappened = true;
+				if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+')
+				{
+					*changeHealth -= 1;
+					g_sChar.m_cLocation.Y++;
+					bSomethingHappened = true;
+				}
+				else
+				{
+					g_sChar.m_cLocation.Y++;
+					bSomethingHappened = true;
+				}
 			}
 		}
 	}
@@ -51,8 +79,17 @@ void leversMovement_HS()
 		{
 			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != (char)186)
 			{
-				g_sChar.m_cLocation.X++;
-				bSomethingHappened = true;
+				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == '+')
+				{
+					*changeHealth -= 1;
+					g_sChar.m_cLocation.X++;
+					bSomethingHappened = true;
+				}
+				else
+				{
+					g_sChar.m_cLocation.X++;
+					bSomethingHappened = true;
+				}
 			}
 		}
 	}
@@ -106,5 +143,9 @@ void leversMovement_HS()
 	{
 		// set the bounce time to some time in the future to prevent accidental triggers
 		g_dBounceTime = g_dElapsedTime + 0.125; // 125ms should be enough
+	}
+	if (*changeHealth == 0)
+	{
+		resetLevel();
 	}
 }
