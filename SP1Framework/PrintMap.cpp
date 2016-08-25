@@ -242,7 +242,7 @@ void renderArea(int height, int width, char FogArray[50][150])
 		{
 			if (map[playerY][row] == ' ') //Reduce range fov in corridors
 			{
-				FogArray[playerY - 1][row] = map[playerY-1][row];
+				FogArray[playerY - 1][row] = map[playerY - 1][row];
 				FogArray[playerY][row] = map[playerY][row];
 				FogArray[playerY + 1][row] = map[playerY + 1][row];
 			}

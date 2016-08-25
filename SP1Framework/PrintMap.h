@@ -16,4 +16,4 @@ extern struct SGameChar g_sChar;
 
 void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char FogArray[50][150], bool options);
 void deleteMap(int width, int height);
-void renderArea(int width, int height, char(&FogArray)[50][150]);
+void renderArea(int width, int height, char FogArray[50][150]);
