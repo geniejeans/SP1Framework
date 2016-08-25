@@ -194,13 +194,6 @@ void saveMap() // save the current state of the map
 		for (int j = 0; j < 150; j++)
 		{
 			currentMap[i][j] = map[i][j];//find and save current map to array
-		}
-	}
-
-	for (int i = 0; i < 50; i++)
-	{
-		for (int j = 0; j < 150; j++)
-		{
 			currentFog[i][j] = mapFog[i][j];//find and save current map to array
 		}
 	}
@@ -289,12 +282,6 @@ void Question_Asn(bool isTrue) //what happens if a question is answered correctl
 			for (int j = 0; j < 150; j++)
 			{
 				map[i][j] = currentMap[i][j];
-			}
-		}
-		for (int i = 0; i < 50; i++)
-		{
-			for (int j = 0; j < 150; j++)
-			{
 				mapFog[i][j] = currentFog[i][j];//find and save current map to array
 			}
 		}

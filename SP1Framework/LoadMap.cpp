@@ -1,6 +1,6 @@
 #include "LoadMap.h"
 
-void loadMap(int level)
+void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 {
 	string mapname = " ";
 	switch (level)
@@ -16,14 +16,12 @@ void loadMap(int level)
 			break;
 		case 3:
 			mapname = "Maps_Levels/Tutorial.txt"; 
-			checkm = 0;
 			break;
 		case 4: 
 			mapname = "Maps_Levels/Levers.txt"; //Level 1
 			break;
 		case 5: 
 			mapname = "Maps_Levels/Questions.txt"; //Level 2
-			checkm = 2;
 			break;
 		case 6:
 			mapname = "Maps_Levels/Boxes.txt"; //Level 3
@@ -61,8 +59,8 @@ void loadMap(int level)
 	//Function use to store data from text file to 2d array
 	string line = " ";
 	//clear 2d array / portal locations
-	memset(map, '\0', sizeof(map[0][0]) * 50 * 150);
-	memset(mapFog, '\0', sizeof(mapFog[0][0]) * 50 * 150);
+	memset(MapArray, '\0', sizeof(MapArray[0][0]) * 50 * 150);
+	memset(FogArray, '\0', sizeof(FogArray[0][0]) * 50 * 150);
 
 	//store to array
 	ifstream myfile(mapname);
@@ -74,13 +72,13 @@ void loadMap(int level)
 			for (unsigned int i = 0; i <= line.length(); i++)
 			{
 				if (line[i] == '#')
-					map[row][i] = (char)219;
+					MapArray[row][i] = (char)219;
 				else if (line[i] == 'D' && (level == 6 || level == 4 || level == 5 || level == 3)) //Level control printing if u want this on ur level change to (level == 5 || level == 6)
-					map[row][i] = (char)186;
+					MapArray[row][i] = (char)186;
 				else if (line[i] == 'B' && (level == 6 || level == 3)) //Level control printing
-					map[row][i] = (char)254;
+					MapArray[row][i] = (char)254;
 				else
-					map[row][i] = line[i]; //Print the rest as normal
+					MapArray[row][i] = line[i]; //Print the rest as normal
 				mapFog[row][i] = ' ';
 			}
 			row++;
@@ -104,7 +102,7 @@ void loadMap(int level)
 		//Run a double for loop if possible _Assignemt 2 common letter 
 		for (int row = 0; row < 50; row++)//Finds the first row for first letter
 		{
-			if (map[row] == '\0')
+			if (MapArray[row] == '\0')
 			{
 				continue;
 			}
@@ -112,26 +110,26 @@ void loadMap(int level)
 			{
 				for (int col = 0; col < 150; col++) //Finds the colums for first letter
 				{
-					if (map[row][col] == '\0')
+					if (MapArray[row][col] == '\0')
 					{
 						continue; //Dont find any thing
 					}
-					else if ((map[row][col] >= 65 && map[row][col] <= 90) && (map[row][col] != 'E')) //Check if its the letter i want
+					else if ((MapArray[row][col] >= 65 && MapArray[row][col] <= 90) && (MapArray[row][col] != 'E')) //Check if its the letter i want
 					{
-						portalPos[portals].character = map[row][col]; //Store the letter in the array / struct given in global variable
+						portalPos[portals].character = MapArray[row][col]; //Store the letter in the array / struct given in global variable
 						for (int row2 = row+1; row2 < 50; row2++)
 						{
 							for (int col2 = 0; col2 < 150; col2++) //Runs another for loop to find the second letter
 							{
-								if (map[row2][col2] == '\0')
+								if (MapArray[row2][col2] == '\0')
 								{
 									continue;//Dont find any thing
 								}
-								else if ((portalPos[portals].character == map[row2][col2]) && map[row2][col2]!=(char)233) //Found second letter
+								else if ((portalPos[portals].character == MapArray[row2][col2]) && MapArray[row2][col2] != (char)233) //Found second letter
 								{
 									//Store both positions here (MAX. 26)
-									map[row2][col2] = (char)233;
-									map[row][col] = (char)233;
+									MapArray[row2][col2] = (char)233;
+									MapArray[row][col] = (char)233;
 									portalPos[portals].Portal_1_X = row;
 									portalPos[portals].Portal_1_Y = col;
 									portalPos[portals].Portal_2_X = row2;

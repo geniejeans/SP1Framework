@@ -215,6 +215,7 @@ void render()
 			printFog = false;
 			break;
         case S_GAME_TUT:
+			checkm = 0;
 			timeToWait = false;
 			printHealth = true;
 			mapSizeWidth = 124/2;
@@ -233,6 +234,7 @@ void render()
 			renderGame();
 			break;
 		case S_GAME_2:
+			checkm = 2;
 			timeToWait = false;
 			printHealth = true;
 			mapSizeWidth = 126 / 2;
@@ -414,7 +416,7 @@ void renderSplashScreen()  // renders the splash screen
 	if (newMap)
 	{
 		newMap = false;
-		loadMap(0);
+		loadMap(0, map, mapFog);
 	}
 	//Print map in cpp functions
 	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false);
@@ -432,7 +434,7 @@ void renderMap()
 	if (newMap)
 	{
 		newMap = false;
-		loadMap(refreshMap + 3); //Load map
+		loadMap(refreshMap + 3, map, mapFog); //Load map
 		switch (refreshMap)
 		{
 		case 0: //Tutorial
@@ -528,7 +530,7 @@ void renderMainMenu()
 	{
 		menuPointer = 0;
 		newMap = false;
-		loadMap(1);
+		loadMap(1, map, mapFog);
 	}
 	//Print map in cpp functions
 	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, true, false, &printHealth, printFog, mapFog,false);
@@ -576,7 +578,7 @@ void renderInstructions()
 	{
 		menuPointer = 0;
 		newMap = false;
-		loadMap(2);
+		loadMap(2, map, mapFog);
 	}
 	//Print map in cpp functions
 	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, true, &printHealth, printFog, mapFog, false);
@@ -590,7 +592,7 @@ void renderInstructions()
 }
 void renderOptions()
 {
-	//loadMap(1); //May i know who put this here its loading the file 100 times per second
+	//May i know who put this here its loading the file 100 times per second
 	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, true);
 	if (g_dBounceTime > g_dElapsedTime) //This is before any button press
 		return;

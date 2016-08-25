@@ -5,10 +5,7 @@
 
 using namespace std;
 
-extern char map[50][150];
-extern char mapFog[50][150];
-extern int checkm;
-
+//Cannot find a way to do this
 extern struct teleporter portalPos[26];
 
-void loadMap(int level);
+void loadMap(int level, char MapArray[50][150], char  FogArray[50][150]);

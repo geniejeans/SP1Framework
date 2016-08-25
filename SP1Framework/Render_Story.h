@@ -13,5 +13,6 @@ extern bool timeToWait;
 extern bool printHealth;
 extern int printStory;
 extern char mapFog[50][150];
+extern char map[50][150];
 
 void renderStory();

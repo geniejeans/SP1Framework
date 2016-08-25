@@ -16,11 +16,11 @@ void renderStory()
 	}
 	if (printStory == 0)
 	{
-		loadMap(8);
+		loadMap(8, map, mapFog);
 	}
 	if (printStory == 1)
 	{
-		loadMap(9);
+		loadMap(9, map, mapFog);
 	}
 	if (printStory == 2)
 	{
@@ -34,7 +34,7 @@ void renderStory()
 		switch (refreshMap)
 		{
 		case 0:
-			loadMap(10); //levers 
+			loadMap(10, map, mapFog); //levers 
 			if (g_abKeyPressed[K_TAB])
 			{
 				printStory = 3;
@@ -43,7 +43,7 @@ void renderStory()
 			}
 			break;
 		case 1:
-			loadMap(11); //questions
+			loadMap(11, map, mapFog); //questions
 			if (g_abKeyPressed[K_TAB])
 			{
 				printStory = 4;
@@ -52,7 +52,7 @@ void renderStory()
 			}
 			break;
 		case 2:
-			loadMap(12); //boxes 
+			loadMap(12, map, mapFog); //boxes 
 			if (g_abKeyPressed[K_TAB])
 			{
 				printStory = 5;
@@ -61,7 +61,7 @@ void renderStory()
 			}
 			break;
 		case 3:
-			loadMap(13); //teleporters
+			loadMap(13, map, mapFog); //teleporters
 			if (g_abKeyPressed[K_TAB])
 			{
 				printStory = 6;
@@ -70,7 +70,7 @@ void renderStory()
 			}
 			break;
 		case 4:
-			loadMap(14); //success
+			loadMap(14, map, mapFog); //success
 			if (g_abKeyPressed[K_TAB])
 			{
 				g_eGameState = S_MAIN_MENU;
@@ -81,7 +81,7 @@ void renderStory()
 	}
 	else if (*changeHealth == 0)
 	{
-		loadMap(15); //fail
+		loadMap(15, map, mapFog); //fail
 		if (g_abKeyPressed[K_TAB])
 		{
 			g_eGameState = S_MAIN_MENU;

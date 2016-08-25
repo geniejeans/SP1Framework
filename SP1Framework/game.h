@@ -102,4 +102,5 @@ void renderOptions();
 
 void resetLevel();			// Reset the game level
 
+extern int checkm;
 #endif // _GAME_H
