@@ -15,4 +15,4 @@ void saveMap();
 void loadQ(int qNum);
 void Question_Asn(bool isTrue);
 void Question_resolved();
-void reprint_map(int width, int height);
+//void reprint_map(int width, int height);

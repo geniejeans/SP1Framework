@@ -19,6 +19,9 @@ unsigned int mheight = 36 / 2;
 // usage of keys
 extern bool g_abKeyPressed[K_COUNT];
 
+//fog
+char currentFog[50][150];
+
 void qCheck()
 {
 	if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)63)
@@ -194,6 +197,14 @@ void saveMap() // save the current state of the map
 		}
 	}
 
+	for (int i = 0; i < 50; i++)
+	{
+		for (int j = 0; j < 150; j++)
+		{
+			currentFog[i][j] = mapFog[i][j];//find and save current map to array
+		}
+	}
+
 	charLoX = g_sChar.m_cLocation.X;// saves the character's location
 	charLoY = g_sChar.m_cLocation.Y;
 }
@@ -280,8 +291,15 @@ void Question_Asn(bool isTrue) //what happens if a question is answered correctl
 				map[i][j] = currentMap[i][j];
 			}
 		}
+		for (int i = 0; i < 50; i++)
+		{
+			for (int j = 0; j < 150; j++)
+			{
+				mapFog[i][j] = currentFog[i][j];//find and save current map to array
+			}
+		}
 
-		reprint_map(mwidth, mheight);
+		//reprint_map(mwidth, mheight);
 
 		g_sChar.m_cLocation.X = charLoX;
 		g_sChar.m_cLocation.Y = charLoY;
@@ -326,16 +344,16 @@ void Question_resolved() //deleting doors, ? marks, and resetting the temporary 
 	printFog = toggleFog;
 }
 
-void reprint_map(int width, int height) // reprint the map back in its original state
-{
-	COORD c = g_Console.getConsoleSize();
-	c.X = c.X / 2 - width;
-	c.Y = c.Y / 2 - height;
-	string line = " ";
-	for (int row = 0; row <= (height * 2); row++)
-	{
-		line = map[row];
-		g_Console.writeToBuffer(c, line);
-		c.Y++;
-	}
-}
+//void reprint_map(int width, int height) // reprint the map back in its original state
+//{
+//	COORD c = g_Console.getConsoleSize();
+//	c.X = c.X / 2 - width;
+//	c.Y = c.Y / 2 - height;
+//	string line = " ";
+//	for (int row = 0; row <= (height * 2); row++)
+//	{
+//		line = map[row];
+//		g_Console.writeToBuffer(c, line);
+//		c.Y++;
+//	}
+//}
