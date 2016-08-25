@@ -1,6 +1,6 @@
 #include "PrintMap.h"
 
-void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char(&FogArray)[50][150], bool options)
+void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char FogArray[50][150], bool options)
 {
 	double timeToWait = 1.0;
 
@@ -160,7 +160,7 @@ void deleteMap(int width, int height) //Activates at level Teleporter only
 	}
 }
 
-void renderArea(int height, int width, char(&FogArray)[50][150])
+void renderArea(int height, int width, char FogArray[50][150])
 {
 	bool cornerwalls = false;
 	float walls = 0.0f;

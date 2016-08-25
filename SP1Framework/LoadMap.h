@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//Cannot find a way to do this
+//Cannot find a way to do this with array
 extern struct teleporter portalPos[26];
 
 void loadMap(int level, char MapArray[50][150], char  FogArray[50][150]);

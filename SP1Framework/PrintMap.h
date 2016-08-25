@@ -13,8 +13,7 @@ extern struct SGameChar  g_sChar;
 extern int menuPointer;
 extern int optionPointer;
 extern struct SGameChar g_sChar;
-//extern char mapFog[50][150];
 
-void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char(&FogArray)[50][150], bool options);
+void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char FogArray[50][150], bool options);
 void deleteMap(int width, int height);
 void renderArea(int width, int height, char(&FogArray)[50][150]);
