@@ -53,6 +53,12 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 		case 15:
 			mapname = "Maps_Text/Story/Failed.txt";
 			break;
+		case 16:
+			mapname = "Maps_Text/Best_Time.txt";
+			break;
+		case 17:
+			mapname = "Maps_Text/Timings.csv";
+			break;
 	}
 	
 	
@@ -63,32 +69,95 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 	memset(FogArray, '\0', sizeof(FogArray[0][0]) * 50 * 150);
 
 	//store to array
-	ifstream myfile(mapname);
-	int row = 0;
-	if (myfile.is_open())
+	if (level == 17)
 	{
-		while (getline(myfile, line))
-		{	
-			for (unsigned int i = 0; i <= line.length(); i++)
-			{
-				if (line[i] == '#')
-					MapArray[row][i] = (char)219;
-				else if (line[i] == 'D' && (level == 6 || level == 4 || level == 5 || level == 3)) //Level control printing if u want this on ur level change to (level == 5 || level == 6)
-					MapArray[row][i] = (char)186;
-				else if (line[i] == 'B' && (level == 6 || level == 3)) //Level control printing
-					MapArray[row][i] = (char)254;
-				else
-					MapArray[row][i] = line[i]; //Print the rest as normal
-				mapFog[row][i] = ' ';
-			}
+		ifstream file(mapname);
+		int row = 0;
+		string name;
+		string time;
+		string timings2[10][2];
+		bool update = true;
+		int point = 0;
+		while (file >> name >> time)
+		{
+			timing[row][0] = name;
+			timing[row][1] = time;
 			row++;
 		}
-		myfile.close();
+		file.close();
+		if (boardUpdate == true)
+		{
+			for (int a = 0; a <= row; a++)
+			{
+				if ((totalTime > 0.0) && (totalTime < stod(timing[a][1])))
+				{
+					stringstream time;
+					time << totalTime;
+					time >> timings2[a][1];
+					timings2[a][0] = timing[a][0];
+					a += 1;
+					point = a;
+					break;
+				}
+				else
+				{
+					timings2[a][0] = timing[a][0];
+					timings2[a][1] = timing[a][1];
+				}
+			}
+			if (point != 0)
+			{
+				for (point; point < row; point++)
+				{
+					timings2[point][0] = timing[point][0];
+					timings2[point][1] = timing[point - 1][1];
+				}
+			}
+
+			ofstream file2("Maps_Text/Timings2.csv");
+			for (int i = 0; i < row; i++)
+			{
+				file2 << timings2[i][0] << " " << timings2[i][1];
+				file2 << endl;
+			}
+			remove("Maps_Text/Timings.csv");
+			file2.close();
+			rename("Maps_Text/Timings2.csv", "Maps_Text/Timings.csv");
+			totalTime = 0.0;
+			boardUpdate = false;
+		}
+
 	}
 	else
 	{
-		cout << "file cannot be opened" << endl;
+		ifstream myfile(mapname);
+		int row = 0;
+		if (myfile.is_open())
+		{
+			while (getline(myfile, line))
+			{
+				for (unsigned int i = 0; i <= line.length(); i++)
+				{
+					if (line[i] == '#')
+						MapArray[row][i] = (char)219;
+					else if (line[i] == 'D' && (level == 6 || level == 4 || level == 5 || level == 3)) //Level control printing if u want this on ur level change to (level == 5 || level == 6)
+						MapArray[row][i] = (char)186;
+					else if (line[i] == 'B' && (level == 6 || level == 3)) //Level control printing
+						MapArray[row][i] = (char)254;
+					else
+						MapArray[row][i] = line[i]; //Print the rest as normal
+					mapFog[row][i] = ' ';
+				}
+				row++;
+			}
+			myfile.close();
+		}
+		else
+		{
+			cout << "file cannot be opened" << endl;
+		}
 	}
+	
 
 	
 	//Store to struct (Test)

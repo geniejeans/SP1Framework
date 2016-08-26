@@ -1,6 +1,7 @@
 #include "PrintMap.h"
+vector <double> storeTime = { 0.0 };
 
-void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char FogArray[50][150], bool options)
+void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char FogArray[50][150], bool options, bool leaderboard)
 {
 	double timeToWait = 1.0;
 
@@ -8,21 +9,65 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 	COORD c = g_Console.getConsoleSize();
 	c.X = c.X / 2 - width;
 	c.Y = c.Y / 2 - height;
-	string line = " ";
-	renderArea(height, width, FogArray);
-	for (int row = 0; row <= (height*2); row++)
+	if (leaderboard)
 	{
-		if (enableFog)
+		c.X += 15;
+		c.Y = 14;
+	}
+	string line = " ";
+	if (leaderboard)
+	{
+		if (totalTime != 0.0)
 		{
-			line = FogArray[row];
+			storeTime.at(0) = totalTime;
+		}
+		for (int row = 0; row < 10; row++)
+		{
+			line = timing[row][0];
 			g_Console.writeToBuffer(c, line);
+			c.X += 50;
+				line = timing[row][1];
+				g_Console.writeToBuffer(c, line);
+				c.Y += 3;
+				c.X -= 50;
+		}
+		if (storeTime[0] != 0.0)
+		{
+			stringstream convert;
+			convert << storeTime[0];
+			convert >> line;
+			c.X += 15;
 			c.Y++;
+			g_Console.writeToBuffer(c, "Your time is " + line + ".", 0x0A);
+			c.X -= 10;
+			c.Y++;
+			g_Console.writeToBuffer(c, "Press Esc to return back to main menu!", 0x0A);
 		}
 		else
 		{
-			line = map[row];
-			g_Console.writeToBuffer(c, line);
+			c.X += 10;
 			c.Y++;
+			g_Console.writeToBuffer(c, "Press Esc to return back to main menu!" , 0x0A);
+		}
+	}
+	else if (leaderboard == false)
+	{
+//		
+		for (int row = 0; row <= (height * 2); row++)
+		{
+			if (enableFog)
+			{
+				renderArea(height, width, FogArray);
+				line = FogArray[row];
+				g_Console.writeToBuffer(c, line);
+				c.Y++;
+			}
+			else
+			{
+				line = map[row];
+				g_Console.writeToBuffer(c, line);
+				c.Y++;
+			}
 		}
 	}
 	if (isMainMenu)
@@ -35,6 +80,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
 			c.Y++;
+			g_Console.writeToBuffer(c, "Leaderboard!", 0x0A);
+			c.Y++;
 			g_Console.writeToBuffer(c, "Options!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
@@ -44,6 +91,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			g_Console.writeToBuffer(c, "Start Game!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "-> Instructions!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Leaderboard!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "Options!", 0x0A);
 			c.Y++;
@@ -55,7 +104,9 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
 			c.Y++;
-			g_Console.writeToBuffer(c, "-> Options!", 0x0A);
+			g_Console.writeToBuffer(c, "-> Leaderboard!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Options!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
 		}
@@ -65,11 +116,25 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
 			c.Y++;
+			g_Console.writeToBuffer(c, "Leaderboard!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "-> Options!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
+		}
+		else if (menuPointer == 4)
+		{
+			g_Console.writeToBuffer(c, "Start Game!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Leaderboard!", 0x0A);
+			c.Y++;
 			g_Console.writeToBuffer(c, "Options!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "-> Quit Game!", 0x0C);
 		}
-		
+
 	}
 	if (instructions)
 	{

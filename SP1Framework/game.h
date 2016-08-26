@@ -52,6 +52,7 @@ enum EGAMESTATES
     S_SPLASHSCREEN,
 	S_MAIN_MENU,
 	S_INTRUCTIONS,
+	S_LEADERBOARD,
 	S_OPTIONS,
     S_GAME_TUT,			//Level tutorial 
 	S_GAME_1,		//Level 1
@@ -101,6 +102,7 @@ void renderInstructions();  // Instructions page
 void renderOptions();
 
 void resetLevel();			// Reset the game level
+void renderLeaderboard();
 
 extern int checkm;
 #endif // _GAME_H

@@ -73,7 +73,7 @@ void renderStory()
 			loadMap(14, map, mapFog); //success
 			if (g_abKeyPressed[K_TAB])
 			{
-				g_eGameState = S_MAIN_MENU;
+				g_eGameState = S_LEADERBOARD;
 				newMap = true;
 			}
 			break;
@@ -88,5 +88,5 @@ void renderStory()
 			newMap = true;
 		}
 	}
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth,false,mapFog, false);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth,false,mapFog, false, false);
 }

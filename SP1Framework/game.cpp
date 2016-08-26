@@ -55,6 +55,20 @@ bool toggleFog;
 //Print Story
 int printStory = 0;
 
+//timings
+static const int row = 10;
+static const int column = 2;
+string timing[row][column] = { " ", };
+double totalTime = 0.0;
+bool boardUpdate = false;
+struct game
+{
+	double LVL1;
+	double LVL2;
+	double LVL3;
+	double LVL4;
+}timer;
+
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
 //            Initialize variables, allocate memory, load data from file, etc. 
@@ -149,24 +163,36 @@ void update(double dt)
 			splashScreenWait(); // game logic for the splash screen
             break;
 		case S_MAIN_MENU: 
+			timer.LVL1 = 0.0;
+			timer.LVL2 = 0.0;
+			timer.LVL3 = 0.0;
+			timer.LVL4 = 0.0;
 			renderMainMenu();	// game logic for the main screen
 			break;
 		case S_INTRUCTIONS:
 			renderInstructions();
 			break;
+		case S_LEADERBOARD:
+			renderLeaderboard();
+			break;
         case S_GAME_TUT: 
 			gameplay(); // gameplay logic when we are in the game
             break;
 		case S_GAME_1:
+			timer.LVL1 += dt;
 			gameplay(); // gameplay logic when we are in the game
 			break;
 		case S_GAME_2:
+			timer.LVL2 += dt;
 			gameplay(); // gameplay logic when we are in the game
 			break;
 		case S_GAME_3:
+			timer.LVL3 += dt;
 			gameplay(); // gameplay logic when we are in the game
 			break;
 		case S_GAME_4:
+			timer.LVL4 += dt;
+			totalTime = timer.LVL1 + timer.LVL2 + timer.LVL3 + timer.LVL4;
 			gameplay(); // gameplay logic when we are in the game
 			break;
 		case S_GAME_STORY:
@@ -206,6 +232,12 @@ void render()
 			mapSizeWidth = 116 / 2;
 			mapSizeHeight = 37 / 2;
 			renderInstructions();
+			printFog = false;
+			break;
+		case S_LEADERBOARD:
+			mapSizeWidth = 100 / 2;
+			mapSizeHeight = 37 / 2 + 5;
+			renderLeaderboard();
 			printFog = false;
 			break;
 		case S_OPTIONS:
@@ -346,7 +378,25 @@ void processUserInput()
         g_bQuitGame = true;  
 
 	if (g_abKeyPressed[K_LSHIFT])
+	{
+		switch (refreshMap)
+		{
+		case 1:
+			timer.LVL1 = 0.0;
+			break;
+		case 2:
+			timer.LVL2 = 0.0;
+			break;
+		case 3:
+			timer.LVL3 = 0.0;
+			break;
+		case 4:
+			timer.LVL4 = 0.0;
+			break;
+		}
 		resetLevel();		// check for button press for reset of level
+	}
+
 
 	if (g_abKeyPressed[K_ALT])
 	{
@@ -419,7 +469,7 @@ void renderSplashScreen()  // renders the splash screen
 		loadMap(0, map, mapFog);
 	}
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false, false);
 }
 
 void renderGame()
@@ -470,7 +520,7 @@ void renderMap()
 	}
 
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false, false);
 }
 
 void renderCharacter()
@@ -533,7 +583,7 @@ void renderMainMenu()
 		loadMap(1, map, mapFog);
 	}
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, true, false, &printHealth, printFog, mapFog,false);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, true, false, &printHealth, printFog, mapFog, false, false);
 
 	//Start game if flag is true and hits enter key (put only after the cursor is there)
 	if (g_abKeyPressed[K_ENTER] && menuPointer == 0)
@@ -545,17 +595,21 @@ void renderMainMenu()
 		newMap = true;
 		g_eGameState = S_INTRUCTIONS;// sets the state to start
 	}
-
+	else if (g_abKeyPressed[K_ENTER] && menuPointer == 2)
+	{
+		newMap = true;
+		g_eGameState = S_LEADERBOARD;// sets the state to start
+	}
 	// quits the game if player hits the escape key
-	if (g_abKeyPressed[K_ENTER] && menuPointer == 2)
+	if (g_abKeyPressed[K_ENTER] && menuPointer == 3)
 	{
 		newMap = true;
 		g_eGameState = S_OPTIONS;// sets the state to options
 		g_dBounceTime = g_dElapsedTime + 0.25;
 	}
-	if (g_abKeyPressed[K_ENTER] && menuPointer == 3)
+	if (g_abKeyPressed[K_ENTER] && menuPointer == 4)
 		g_bQuitGame = true;
-	
+
 	if (g_dBounceTime > g_dElapsedTime) //This is before any button press
 		return;
 
@@ -564,12 +618,12 @@ void renderMainMenu()
 		menuPointer--;
 		g_dBounceTime = g_dElapsedTime + 0.25;
 	}
-	if (g_abKeyPressed[K_DOWN] && menuPointer != 3)
+	if (g_abKeyPressed[K_DOWN] && menuPointer != 4)
 	{
 		menuPointer++;
 		g_dBounceTime = g_dElapsedTime + 0.25;
 	}
-	
+
 }
 
 void renderInstructions()
@@ -581,7 +635,7 @@ void renderInstructions()
 		loadMap(2, map, mapFog);
 	}
 	//Print map in cpp functions
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, true, &printHealth, printFog, mapFog, false);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, true, &printHealth, printFog, mapFog, false, false);
 
 	//Start game if flag is true and hits enter key (put only after the cursor is there)
 	if (g_abKeyPressed[K_ESCAPE])
@@ -590,10 +644,28 @@ void renderInstructions()
 		g_eGameState = S_MAIN_MENU;// sets the state to start
 	}
 }
+
+void renderLeaderboard()
+{
+	loadMap(16, map, mapFog);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false, false);
+	loadMap(17, map, mapFog);
+	if (totalTime > 0.0)
+	{
+		boardUpdate = true;
+	}
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false, true);
+	if (g_abKeyPressed[K_ESCAPE])
+	{
+		newMap = true;
+		g_eGameState = S_MAIN_MENU;// sets the state to start
+	}
+}
+
 void renderOptions()
 {
 	//May i know who put this here its loading the file 100 times per second
-	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, true);
+	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, true, false);
 	if (g_dBounceTime > g_dElapsedTime) //This is before any button press
 		return;
 	if (g_abKeyPressed[K_UP] && optionPointer != 0)
