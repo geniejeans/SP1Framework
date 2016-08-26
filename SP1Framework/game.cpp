@@ -67,6 +67,7 @@ struct game
 	double LVL2;
 	double LVL3;
 	double LVL4;
+	double LVL5;
 }timer;
 
 //--------------------------------------------------------------
@@ -167,6 +168,7 @@ void update(double dt)
 			timer.LVL2 = 0.0;
 			timer.LVL3 = 0.0;
 			timer.LVL4 = 0.0;
+			timer.LVL5 = 0.0;
 			renderMainMenu();	// game logic for the main screen
 			break;
 		case S_INTRUCTIONS:
@@ -193,6 +195,11 @@ void update(double dt)
 		case S_GAME_4:
 			timer.LVL4 += dt;
 			totalTime = timer.LVL1 + timer.LVL2 + timer.LVL3 + timer.LVL4;
+			gameplay(); // gameplay logic when we are in the game
+			break;
+		case S_GAME_5:
+			timer.LVL5 += dt;
+			totalTime = timer.LVL1 + timer.LVL2 + timer.LVL3 + timer.LVL4 + timer.LVL5;
 			gameplay(); // gameplay logic when we are in the game
 			break;
 		case S_GAME_STORY:
@@ -290,6 +297,14 @@ void render()
 			refreshMap = 4;
 			renderGame();
 			break;
+		case S_GAME_5:
+			timeToWait = false;
+			printHealth = true;
+			mapSizeWidth = 124 / 2;
+			mapSizeHeight = 36 / 2;
+			refreshMap = 5;
+			renderGame();
+			break;
 		case S_GAME_STORY:
 			timeToWait = false;
 			printHealth = false;
@@ -364,6 +379,13 @@ void moveCharacter()
 			g_eGameState = S_GAME_STORY; //Proceed to success
 		}
 		break;
+	case 5: //Boss
+		Movement_Tut();
+		Final_Stage_HS();
+		if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == 'E') && (refreshMap == 5))
+		{
+			g_eGameState = S_GAME_STORY; //Proceed to success
+		}
 	default:
 		cout << "Character cannot move!!";
 		break;
@@ -393,6 +415,10 @@ void processUserInput()
 		case 4:
 			timer.LVL4 = 0.0;
 			break;
+		case 5:
+			timer.LVL5 = 0.0;
+			Sleep(250);
+			break;
 		}
 		resetLevel();		// check for button press for reset of level
 	}
@@ -418,6 +444,10 @@ void processUserInput()
 				g_eGameState = S_GAME_4; //Loads level 4 
 				Sleep(250);
 				break;
+			case 4:
+				g_eGameState = S_GAME_5; //Loads level 5
+				Sleep(250);
+				break;
 		}
 		newMap = true;
 	}
@@ -439,6 +469,10 @@ void processUserInput()
 			break;
 		case 4:
 			g_eGameState = S_GAME_3; //Loads level 3 
+			Sleep(250);
+			break;
+		case 5:
+			g_eGameState = S_GAME_4; //Loads level 4 
 			Sleep(250);
 			break;
 		}
@@ -484,7 +518,14 @@ void renderMap()
 	if (newMap)
 	{
 		newMap = false;
-		loadMap(refreshMap + 3, map, mapFog); //Load map
+		if (refreshMap == 5)
+		{
+			loadMap(18, map, mapFog);
+		}
+		else
+		{
+			loadMap(refreshMap + 3, map, mapFog); //Load map
+		}
 		switch (refreshMap)
 		{
 		case 0: //Tutorial
@@ -512,6 +553,11 @@ void renderMap()
 			g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2 + 14;
 			timeToWait = true;
 			timeRemaining = 50;
+			break;
+		case 5: //boss
+			g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2 - 59;
+			g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2 - 13;
+			timeToWait = false;
 			break;
 		default:
 			cout << "THIS IS AN ERROR MESSAGE FOR BEING OUT OF SIZE!!!";

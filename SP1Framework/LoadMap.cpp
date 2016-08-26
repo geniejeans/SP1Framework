@@ -59,6 +59,9 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 		case 17:
 			mapname = "Maps_Text/Timings.csv";
 			break;
+		case 18:
+			mapname = "Maps_Levels/Boss.txt";
+			break;
 	}
 	
 	
@@ -140,9 +143,9 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 				{
 					if (line[i] == '#')
 						MapArray[row][i] = (char)219;
-					else if (line[i] == 'D' && (level == 6 || level == 4 || level == 5 || level == 3)) //Level control printing if u want this on ur level change to (level == 5 || level == 6)
+					else if (line[i] == 'D' && (level == 6 || level == 4 || level == 5 || level == 3 || level == 18)) //Level control printing if u want this on ur level change to (level == 5 || level == 6)
 						MapArray[row][i] = (char)186;
-					else if (line[i] == 'B' && (level == 6 || level == 3)) //Level control printing
+					else if (line[i] == 'B' && (level == 6 || level == 3 || level == 18)) //Level control printing
 						MapArray[row][i] = (char)254;
 					else
 						MapArray[row][i] = line[i]; //Print the rest as normal
@@ -161,7 +164,7 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 
 	
 	//Store to struct (Test)
-	if (level == 7 || level == 3)
+	if (level == 7 || level == 3 || level == 18)
 	{
 		int portals = 0;
 		memset(portalPos, 0, sizeof(portalPos));
@@ -183,7 +186,7 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 					{
 						continue; //Dont find any thing
 					}
-					else if ((MapArray[row][col] >= 65 && MapArray[row][col] <= 90) && (MapArray[row][col] != 'E')) //Check if its the letter i want
+					else if ((MapArray[row][col] >= 65 && MapArray[row][col] <= 90) && (MapArray[row][col] != 'E') && (MapArray[row][col] != 'X')) //Check if its the letter i want
 					{
 						portalPos[portals].character = MapArray[row][col]; //Store the letter in the array / struct given in global variable
 						for (int row2 = row+1; row2 < 50; row2++)

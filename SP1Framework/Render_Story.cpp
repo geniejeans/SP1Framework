@@ -70,6 +70,14 @@ void renderStory()
 			}
 			break;
 		case 4:
+			loadMap(18, map, mapFog); //success
+			if (g_abKeyPressed[K_TAB])
+			{
+				printStory = 7;
+				g_eGameState = S_GAME_5;
+				newMap = true;
+			}
+		case 5:
 			loadMap(14, map, mapFog); //success
 			if (g_abKeyPressed[K_TAB])
 			{

@@ -15,6 +15,7 @@
 #include "Question_Movement.h"
 #include "Tutorial_Movement.h"
 #include "Tutorial_Level.h"
+#include "Final_Stage.h"
 #include "Render_Story.h"
 //#include "CollisionDetection.h"
 #include <fstream> //File opening
@@ -59,6 +60,7 @@ enum EGAMESTATES
 	S_GAME_2,		//Level 2
 	S_GAME_3,		//Level 3
 	S_GAME_4,		//Level 4
+	S_GAME_5,       //Level 5
 	S_GAME_STORY,   //Story
     S_COUNT
 };
