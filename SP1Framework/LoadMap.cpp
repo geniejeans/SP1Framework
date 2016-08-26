@@ -90,7 +90,7 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 		file.close();
 		if (boardUpdate == true)
 		{
-			for (int a = 0; a <= row; a++)
+			for (int a = 0; a < row; a++)
 			{
 				if ((totalTime > 0.0) && (totalTime < stod(timing[a][1])))
 				{
