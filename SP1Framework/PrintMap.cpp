@@ -3,7 +3,7 @@ vector <double> storeTime = { 0.0 };
 
 void printMap(int width, int height, bool *timer, bool isMainMenu, bool instructions, bool *health, bool enableFog, char FogArray[50][150], bool options, bool leaderboard)
 {
-	double timeToWait = 1.0;
+	double timeToWait = 1.0; // timer waiting time
 
 	//Prints the map info
 	COORD c = g_Console.getConsoleSize();
@@ -52,7 +52,7 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 	}
 	else if (leaderboard == false)
 	{
-//		
+//		prints the fog if player choose to have this enhancement
 		for (int row = 0; row <= (height * 2); row++)
 		{
 			if (enableFog)
@@ -70,7 +70,7 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			}
 		}
 	}
-	if (isMainMenu)
+	if (isMainMenu) // Check for if player is in main menu (player selections)
 	{
 		c.X += 44 - 10;
 		c.Y++;
@@ -84,6 +84,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "Options!", 0x0A);
 			c.Y++;
+			g_Console.writeToBuffer(c, "Credits!", 0x0A);
+			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
 		}
 		else if (menuPointer == 1)
@@ -95,6 +97,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			g_Console.writeToBuffer(c, "Leaderboard!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "Options!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Credits!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
 		}
@@ -108,6 +112,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "Options!", 0x0A);
 			c.Y++;
+			g_Console.writeToBuffer(c, "Credits!", 0x0A);
+			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
 		}
 		else if (menuPointer == 3)
@@ -119,6 +125,8 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			g_Console.writeToBuffer(c, "Leaderboard!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "-> Options!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Credits!", 0x0A);
 			c.Y++;
 			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
 		}
@@ -132,17 +140,33 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 			c.Y++;
 			g_Console.writeToBuffer(c, "Options!", 0x0A);
 			c.Y++;
+			g_Console.writeToBuffer(c, "-> Credits!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Quit Game!", 0x0C);
+		}
+		else if (menuPointer == 5)
+		{
+			g_Console.writeToBuffer(c, "Start Game!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Instructions!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Leaderboard!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Options!", 0x0A);
+			c.Y++;
+			g_Console.writeToBuffer(c, "Credits!", 0x0A);
+			c.Y++;
 			g_Console.writeToBuffer(c, "-> Quit Game!", 0x0C);
 		}
 
 	}
-	if (instructions)
+	if (instructions) // display instructions
 	{
 		c.X += width - 9;
 		c.Y++;
 		g_Console.writeToBuffer(c, "Escape to go back!", 0x0A);
 	}
-	if (options)
+	if (options) // display options for player selection
 	{
 		c.X += 44 - 10;
 		c.Y++;
@@ -160,7 +184,7 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 		}
 
 	}
-	if (*timer == true)
+	if (*timer == true) //Displays info of time left in level
 	{
 		if (timeRemaining > 0)
 		{
@@ -206,7 +230,6 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 		}
 
 	}
-
 }
 
 void deleteMap(int width, int height) //Activates at level Teleporter only

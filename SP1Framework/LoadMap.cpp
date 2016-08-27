@@ -64,7 +64,6 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 			break;
 	}
 	
-	
 	//Function use to store data from text file to 2d array
 	string line = " ";
 	//clear 2d array / portal locations

@@ -17,6 +17,8 @@
 #include "Tutorial_Level.h"
 #include "Final_Stage.h"
 #include "Render_Story.h"
+#include "PrintCredits.h"
+#include "CreditsLoader.h"
 //#include "CollisionDetection.h"
 #include <fstream> //File opening
 #include <string>
@@ -55,6 +57,7 @@ enum EGAMESTATES
 	S_INTRUCTIONS,
 	S_LEADERBOARD,
 	S_OPTIONS,
+	S_CREDITS,
     S_GAME_TUT,			//Level tutorial 
 	S_GAME_1,		//Level 1
 	S_GAME_2,		//Level 2
@@ -105,6 +108,7 @@ void renderOptions();
 
 void resetLevel();			// Reset the game level
 void renderLeaderboard();
+void renderCredits();
 
 extern int checkm;
 #endif // _GAME_H

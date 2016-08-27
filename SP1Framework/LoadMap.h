@@ -12,4 +12,4 @@ extern bool boardUpdate;
 extern string timing[10][2];
 extern double totalTime;
 
-void loadMap(int level, char MapArray[50][150], char  FogArray[50][150]);
+void loadMap(int level, char MapArray[50][150], char FogArray[50][150]);

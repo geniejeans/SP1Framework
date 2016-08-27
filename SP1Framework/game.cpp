@@ -55,6 +55,11 @@ bool toggleFog;
 //Print Story
 int printStory = 0;
 
+//Store current X location of text
+int currentX = 0;
+int currentY = 0;
+char Credits[600][150];
+
 //timings
 static const int row = 10;
 static const int column = 2;
@@ -177,6 +182,9 @@ void update(double dt)
 		case S_LEADERBOARD:
 			renderLeaderboard();
 			break;
+		case S_CREDITS:
+			renderCredits();
+			break;
         case S_GAME_TUT: 
 			gameplay(); // gameplay logic when we are in the game
             break;
@@ -251,6 +259,12 @@ void render()
 			mapSizeWidth = 88 / 2;
 			mapSizeHeight = 9 / 2;
 			renderOptions();
+			printFog = false;
+			break;
+		case S_CREDITS: //Currently editing this one
+			mapSizeWidth = 144 / 2;
+			mapSizeHeight = 560 / 2;
+			renderCredits();
 			printFog = false;
 			break;
         case S_GAME_TUT:
@@ -631,6 +645,9 @@ void renderMainMenu()
 	//Print map in cpp functions
 	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, true, false, &printHealth, printFog, mapFog, false, false);
 
+	if (g_dBounceTime > g_dElapsedTime) //This is before any button press I mean it seriously dont put this below --------------
+		return;
+
 	//Start game if flag is true and hits enter key (put only after the cursor is there)
 	if (g_abKeyPressed[K_ENTER] && menuPointer == 0)
 	{
@@ -646,7 +663,6 @@ void renderMainMenu()
 		newMap = true;
 		g_eGameState = S_LEADERBOARD;// sets the state to start
 	}
-	// quits the game if player hits the escape key
 	if (g_abKeyPressed[K_ENTER] && menuPointer == 3)
 	{
 		newMap = true;
@@ -654,22 +670,24 @@ void renderMainMenu()
 		g_dBounceTime = g_dElapsedTime + 0.25;
 	}
 	if (g_abKeyPressed[K_ENTER] && menuPointer == 4)
+	{
+		newMap = true;
+		g_eGameState = S_CREDITS;// sets the state to credits
+		g_dBounceTime = g_dElapsedTime + 0.25;
+	}
+	if (g_abKeyPressed[K_ENTER] && menuPointer == 5)
 		g_bQuitGame = true;
 
-	if (g_dBounceTime > g_dElapsedTime) //This is before any button press
-		return;
-
-	if (g_abKeyPressed[K_UP] && menuPointer != 0)
+	if (g_abKeyPressed[K_UP] && menuPointer != 0) //Move up and down the pointer
 	{
 		menuPointer--;
 		g_dBounceTime = g_dElapsedTime + 0.25;
 	}
-	if (g_abKeyPressed[K_DOWN] && menuPointer != 4)
+	if (g_abKeyPressed[K_DOWN] && menuPointer != 5)
 	{
 		menuPointer++;
 		g_dBounceTime = g_dElapsedTime + 0.25;
 	}
-
 }
 
 void renderInstructions()
@@ -741,6 +759,7 @@ void renderOptions()
 	}
 
 }
+
 void resetLevel() //Causes reset
 {
 	if (healthLeft >= 1)
@@ -753,5 +772,26 @@ void resetLevel() //Causes reset
 	if (healthLeft == 0)
 	{
 		g_eGameState = S_GAME_STORY;
+	}
+}
+
+void renderCredits()
+{
+	if (newMap)
+	{
+		currentX = 0;
+		currentY = 0;
+		menuPointer = 0;
+		newMap = false;
+		loadCredits(1, Credits);
+	}
+	//Print map in cpp functions
+	printCredits(mapSizeWidth, mapSizeHeight, &currentX, &currentY, &g_dBounceTime, Credits);
+
+	//Start game if flag is true and hits enter key (put only after the cursor is there)
+	if (g_abKeyPressed[K_ESCAPE] || currentX == (mapSizeHeight*2) + 50)
+	{
+		newMap = true;
+		g_eGameState = S_MAIN_MENU;// sets the state to start
 	}
 }
