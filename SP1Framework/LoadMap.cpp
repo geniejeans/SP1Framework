@@ -196,11 +196,11 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 								{
 									continue;//Dont find any thing
 								}
-								else if ((portalPos[portals].character == MapArray[row2][col2]) && MapArray[row2][col2] != (char)233) //Found second letter
+								else if ((portalPos[portals].character == MapArray[row2][col2]) && MapArray[row2][col2] != (char)64) //Found second letter
 								{
 									//Store both positions here (MAX. 26)
-									MapArray[row2][col2] = (char)233;
-									MapArray[row][col] = (char)233;
+									MapArray[row2][col2] = (char)64;
+									MapArray[row][col] = (char)64;
 									portalPos[portals].Portal_1_X = row;
 									portalPos[portals].Portal_1_Y = col;
 									portalPos[portals].Portal_2_X = row2;

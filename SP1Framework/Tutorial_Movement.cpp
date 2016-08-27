@@ -38,7 +38,7 @@ void Movement_Tut()
 					g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
 					bSomethingHappened = true;
 				}
-				else if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)233) // checking for portal
+				else if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)64) // checking for portal
 				{
 					returnNextPosition((g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X) - (90 - mapSizeWidth));
 					bSomethingHappened = true;
@@ -83,7 +83,7 @@ void Movement_Tut()
 					g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
 					bSomethingHappened = true;
 				}
-				else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)233) // checking for portal)
+				else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)64) // checking for portal)
 				{
 					returnNextPosition((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth));
 					bSomethingHappened = true;
@@ -127,7 +127,7 @@ void Movement_Tut()
 					g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
 					bSomethingHappened = true;
 				}
-				else if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)233) // checking for portal
+				else if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)64) // checking for portal
 				{
 					returnNextPosition((g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X) - (90 - mapSizeWidth));
 					bSomethingHappened = true;
@@ -170,7 +170,7 @@ void Movement_Tut()
 					g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
 					bSomethingHappened = true;
 				}
-				else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)233) // checking for portal)
+				else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)64) // checking for portal)
 				{
 					returnNextPosition((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth));
 					bSomethingHappened = true;

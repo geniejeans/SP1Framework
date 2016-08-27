@@ -566,7 +566,7 @@ void renderMap()
 			g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2 + 56;
 			g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2 + 14;
 			timeToWait = true;
-			timeRemaining = 60;
+			timeRemaining = 50;
 			break;
 		case 5: //boss
 			g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2 - 59;
@@ -589,7 +589,7 @@ void renderCharacter()
 	WORD charColor = 0x0C;
 	if (g_sChar.m_bActive)
 	{
-		charColor = 0x0A;
+		charColor = 0x0B;
 	}
 	g_Console.writeToBuffer(g_sChar.m_cLocation, (char)234, charColor);
 	

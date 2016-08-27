@@ -9,7 +9,6 @@ void Tutorial_Level_HS()
 	if (map[5][75] == (char)254) //Door1 
 	{
 		map[5][81] = ' ';
-		map[5][82] = ' ';
-		map[5][76] = ' ';
+
 	}
 }
