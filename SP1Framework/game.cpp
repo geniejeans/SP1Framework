@@ -566,7 +566,7 @@ void renderMap()
 			g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2 + 56;
 			g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2 + 14;
 			timeToWait = true;
-			timeRemaining = 50;
+			timeRemaining = 60;
 			break;
 		case 5: //boss
 			g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2 - 59;
