@@ -2,10 +2,10 @@
                      -"           ^""**$$$e.                                              
                    ."                   '$$$c                                             
                   /                      "4$$b         Noooo!                             
-                 d  3                     $$$$         I am not even close to the treasure!
-                 $  *                   .$$$$$$        I have failed my mission…          
-                .$  ^c           $$$$$e$$$$$$$$.                                          
-                d$L  4.         4$$$$$$$$$$$$$$b                                          
+                 d  3                     $$$$         
+                 $  *                   .$$$$$$        I am not even close to the treasure!        
+                .$  ^c           $$$$$e$$$$$$$$.       
+                d$L  4.         4$$$$$$$$$$$$$$b       I have failed my mission ...                                    
                 $$$$b ^ceeeee.  4$$ECL.F*$$$$$$$                                          
     e$""=.      $$$$P d$$$$F $ $$$$$$$$$- $$$$$$                                          
    z$$b. ^c     3$$$F "$$$$b   $"$$$$$$$  $$$$*"      .=""$c                              
@@ -17,9 +17,9 @@
                "$$$$$$"'$=e....$*$$**$cz$$" "..d$*"                                       
                  "*$$$  *=%4.$ L L$ P3$$$F $$$P"                                          
                     "$   "%*ebJLzb$e$$$$$b $P"                                            
-                      %..      4$$$$$$$$$$ "                                              
+                      %..      4$$$$$$$$$$ "           Oh, nevermind.                                   
                        $$$e   z$$$$$$$$$$%                                                
-                        "*$c  "$$$$$$$P"                                                  
+                        "*$c  "$$$$$$$P"               I can always restart the game!                                   
                          ."""*$$$$$$$$bc                                                  
                       .-"    .$***$$$"""*e.                                               
                    .-"    .e$"     "*$c  ^*b.                                             

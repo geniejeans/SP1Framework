@@ -1,19 +1,24 @@
-  #####         ###################                                                            
-  #####         ###################                        19XX                                
-  #####         ###################                                                            
-  #####         #####                    The Nazi’s stockpile of gold has been found!          
-  #####         #####                    Being an anti-Nazi (if that’s a thing),               
-  #####         #####                    you decide to pull a Robin Hood,                      
-  #####         #####                    to steal from the wicked rich (the Nazis)             
-  #####         #####                    and give to the poor (yourself).                      
-  #################################      Even better:                                          
-  #################################      the Nazis are too confident in their security systems,
-  #################################      so there are literally no guards,                     
-                #####         #####      just puzzle locks.                                    
-                #####         #####      In other words,                                       
-                #####         #####      you get to put on an explorer's hat, camping torch,   
-                #####         #####      auto mapper and act like Indiana Jones                
-                #####         #####      without looking like an idiot!                        
-  ###################         #####      For treasure!                                         
-  ###################         #####                                                            
-  ###################         #####                                                            
+
+
+
+                *     /`\            *
+         *           /   \    *         /'\   *   _  *                              19XX
+ \_..       *   /'.,/     \_      *  .,'   \     / \_   *      *                     
+     \         /            \      _/       \_  /    \     _                        Not long after WW2,
+      \__,.   /              \  * /           \/.,   _|  _/ \   *                   rumors of the Nazi gold begin to spread like wildfire.
+           \_/                \  /',.,''\      \_ \_/  \/    \                      
+                               \/   /    ',../',.\    _/      \      *              You are an explorer,
+              /           _ _   \  /    |         \  /.,/'\   _\                    a very useless explorer...
+            _/           /MMm\   \_     |          \/      \_/  \                   
+           /      \     /MMMMm\    \__   \          \_       \   \_                 To prove yourself worthy, 
+                   \   /MMMMMMm|      \   \           \       \    \                you decided to look for the Nazi gold.
+                    \  |MMMMMMmm\      \___            \_      \_   \             
+                     \|MMMMMMMMmm|____.'  /\_            \       \   \_             After months and months of researching,
+                     /'.,___________...,,'   \            \   \        \            you finally found the location to The Nazi's secret vault...
+                    /       \          |      \    |__     \   \_       \         
+                  _/        |           \      \_     \     \    \       \_       
+                 /                               \     \     \_   \        \      
+                                                  \     \      \   \__      \     
+                                                   \     \_     \     \      \    
+                                                    |      \     \     \      \   
+                                                     \            |            \                                                          
