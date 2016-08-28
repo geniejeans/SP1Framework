@@ -12,6 +12,7 @@ void Movement_Tut()
 
 	// Updating the location of the character based on the key press
 	// providing a beep sound whenver we shift the character
+	// UP, DOWN, LEFT, RIGHT, SPACE
 	if (g_abKeyPressed[K_UP] && g_sChar.m_cLocation.Y > 0)
 	{
 		if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219) // wall collision
@@ -22,12 +23,14 @@ void Movement_Tut()
 				{
 					if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '1') //switch collision
 					{
-						if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+') // spikes
+						// SPIKES
+						if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+')
 						{
 							*changeHealth -= 1;
 							g_sChar.m_cLocation.Y--;
 							bSomethingHappened = true;
 						}
+						// BOX
 						else if ((map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219))
 						{
 							if (map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)186)
@@ -48,12 +51,14 @@ void Movement_Tut()
 							g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
 							bSomethingHappened = true;
 						}
-						else if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)64) // checking for portal
+						// PORTAL
+						else if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)64)
 						{
 							returnNextPosition((g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X) - (90 - mapSizeWidth));
 							bSomethingHappened = true;
 						}
-						else // if no obstacles walk normally
+						// NORMAL WALKING
+						else 
 						{
 							g_sChar.m_cLocation.Y--;
 							bSomethingHappened = true;
@@ -70,21 +75,23 @@ void Movement_Tut()
 	}
 	if (g_abKeyPressed[K_LEFT] && g_sChar.m_cLocation.X > 0)
 	{
-		if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != (char)219)
+		if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != (char)219) // wall collision
 		{
-			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != (char)186)
+			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != (char)186) // door collision
 			{
-				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != '0')
+				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != '0') // switch collision
 				{
-					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != '1')
+					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != '1') // switch collision
 					{
+						// SPIKES
 						if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == '+')
 						{
 							*changeHealth -= 1;
 							g_sChar.m_cLocation.X--;
 							bSomethingHappened = true;
 						}
-						if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] != (char)219))
+						// BOX
+						else if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] != (char)219))
 						{
 							if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] == (char)186)
 							{
@@ -105,11 +112,13 @@ void Movement_Tut()
 							g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
 							bSomethingHappened = true;
 						}
-						else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)64) // checking for portal)
+						// PORTAL
+						else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)64)
 						{
 							returnNextPosition((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth));
 							bSomethingHappened = true;
 						}
+						// NORMAL WALKING
 						else
 						{
 							g_sChar.m_cLocation.X--;
@@ -126,21 +135,23 @@ void Movement_Tut()
 	}
 	if (g_abKeyPressed[K_DOWN] && g_sChar.m_cLocation.Y < g_Console.getConsoleSize().Y - 1)
 	{
-		if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219)
+		if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219) // WALL COLLISION
 		{
-			if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)186)
+			if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)186) // DOOR COLLISION
 			{
-				if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '0')
+				if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '0') // SWITCH COLLISION
 				{
-					if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '1')
+					if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '1') //SWITCH COLLISION
 					{
+						// SPIKES
 						if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+')
 						{
 							*changeHealth -= 1;
 							g_sChar.m_cLocation.Y++;
 							bSomethingHappened = true;
 						}
-						if ((map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219))
+						// BOX
+						else if ((map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219))
 						{
 							if (map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)186)
 							{
@@ -161,11 +172,13 @@ void Movement_Tut()
 							g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
 							bSomethingHappened = true;
 						}
+						// PORTAL
 						else if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)64) // checking for portal
 						{
 							returnNextPosition((g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X) - (90 - mapSizeWidth));
 							bSomethingHappened = true;
 						}
+						// NORMAL WALKING
 						else
 						{
 							g_sChar.m_cLocation.Y++;
@@ -182,20 +195,22 @@ void Movement_Tut()
 	}
 	if (g_abKeyPressed[K_RIGHT] && g_sChar.m_cLocation.X < g_Console.getConsoleSize().X - 1)
 	{
-		if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != (char)219)
+		if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != (char)219) // WALL COLLISION
 		{
-			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != (char)186)
+			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != (char)186) // DOOR COLLISION
 			{
-				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != '0')
+				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != '0') // SWITCH COLLISION
 				{
-					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != '1')
+					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != '1') // SWITCH COLLISION
 					{
+						// SPIKES
 						if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == '+')
 						{
 							*changeHealth -= 1;
 							g_sChar.m_cLocation.X++;
 							bSomethingHappened = true;
 						}
+						// BOX
 						if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] != (char)219)) //if there is a block and nothing is blocking it
 						{
 							if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] == (char)186)
@@ -216,11 +231,13 @@ void Movement_Tut()
 							g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
 							bSomethingHappened = true;
 						}
-						else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)64) // checking for portal)
+						// PORTALS
+						else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)64)
 						{
 							returnNextPosition((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth));
 							bSomethingHappened = true;
 						}
+						// NORMAL WALKING
 						else
 						{
 							g_sChar.m_cLocation.X++;
@@ -236,6 +253,7 @@ void Movement_Tut()
 	}
 	if (g_abKeyPressed[K_SPACE])
 	{
+		/*--------------------- THIS IS FOR SWITCH. ALL FOUR DIRECTIONS INCLUDED-----------------------------------------------------*/
 		if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)48) //right
 		{
 			map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] = (char)49;
@@ -279,6 +297,7 @@ void Movement_Tut()
 	}
 }
 
+/*-----------------------THIS IS FOR PORTAL----------------------------------------------------------------------------*/
 void returnPosition(int currentPositionY, int currentPositionX)
 {
 	for (int portalcheck = 0; portalcheck < 26; portalcheck++)
