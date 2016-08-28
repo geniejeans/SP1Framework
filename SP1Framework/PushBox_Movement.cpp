@@ -165,11 +165,6 @@ void pushBoxMovement_J()
 			//bSomethingHappened = true;
 		}
 	}
-	if (g_abKeyPressed[K_SPACE])
-	{
-		g_sChar.m_bActive = !g_sChar.m_bActive;
-		bSomethingHappened = true;
-	}
 
 	if (bSomethingHappened)
 	{

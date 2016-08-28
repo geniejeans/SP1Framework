@@ -77,11 +77,6 @@ void teleport_player()
 			}
 		}
 	}
-	if (g_abKeyPressed[K_SPACE])
-	{
-		g_sChar.m_bActive = !g_sChar.m_bActive;
-		bSomethingHappened = true;
-	}
 
 	//Reset map upon stepping into the void
 	if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)255)

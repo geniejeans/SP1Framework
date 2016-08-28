@@ -17,17 +17,22 @@ void leversMovement_HS()
 		{
 			if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)186)
 			{
-
-				if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+')
+				if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '0')
 				{
-					*changeHealth -= 1;
-					g_sChar.m_cLocation.Y--;
-					bSomethingHappened = true;
-				}
-				else
-				{
-					g_sChar.m_cLocation.Y--;
-					bSomethingHappened = true;
+					if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '1')
+					{
+						if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+')
+						{
+							*changeHealth -= 1;
+							g_sChar.m_cLocation.Y--;
+							bSomethingHappened = true;
+						}
+						else
+						{
+							g_sChar.m_cLocation.Y--;
+							bSomethingHappened = true;
+						}
+					}
 				}
 			}
 		}
@@ -39,16 +44,22 @@ void leversMovement_HS()
 		{
 			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != (char)186)
 			{
-				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == '+')
+				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != '0')
 				{
-					*changeHealth -= 1;
-					g_sChar.m_cLocation.X--;
-					bSomethingHappened = true;
-				}
-				else
-				{
-					g_sChar.m_cLocation.X--;
-					bSomethingHappened = true;
+					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != '1')
+					{
+						if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == '+')
+						{
+							*changeHealth -= 1;
+							g_sChar.m_cLocation.X--;
+							bSomethingHappened = true;
+						}
+						else
+						{
+							g_sChar.m_cLocation.X--;
+							bSomethingHappened = true;
+						}
+					}
 				}
 			}
 		}
@@ -59,16 +70,22 @@ void leversMovement_HS()
 		{
 			if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)186)
 			{
-				if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+')
+				if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '0')
 				{
-					*changeHealth -= 1;
-					g_sChar.m_cLocation.Y++;
-					bSomethingHappened = true;
-				}
-				else
-				{
-					g_sChar.m_cLocation.Y++;
-					bSomethingHappened = true;
+					if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '1')
+					{
+						if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+')
+						{
+							*changeHealth -= 1;
+							g_sChar.m_cLocation.Y++;
+							bSomethingHappened = true;
+						}
+						else
+						{
+							g_sChar.m_cLocation.Y++;
+							bSomethingHappened = true;
+						}
+					}
 				}
 			}
 		}
@@ -79,16 +96,22 @@ void leversMovement_HS()
 		{
 			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != (char)186)
 			{
-				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == '+')
+				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != '0')
 				{
-					*changeHealth -= 1;
-					g_sChar.m_cLocation.X++;
-					bSomethingHappened = true;
-				}
-				else
-				{
-					g_sChar.m_cLocation.X++;
-					bSomethingHappened = true;
+					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != '1')
+					{
+						if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == '+')
+						{
+							*changeHealth -= 1;
+							g_sChar.m_cLocation.X++;
+							bSomethingHappened = true;
+						}
+						else
+						{
+							g_sChar.m_cLocation.X++;
+							bSomethingHappened = true;
+						}
+					}
 				}
 			}
 		}
@@ -126,14 +149,6 @@ void leversMovement_HS()
 		else if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)49) //up
 		{
 			map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)48;
-		}
-		else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)48) //center
-		{
-			map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)49;
-		}
-		else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)49) //center
-		{
-			map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)48;
 		}
 
 		bSomethingHappened = true;

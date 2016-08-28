@@ -14,39 +14,51 @@ void Movement_Tut()
 	// providing a beep sound whenver we shift the character
 	if (g_abKeyPressed[K_UP] && g_sChar.m_cLocation.Y > 0)
 	{
-		if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219)
+		if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219) // wall collision
 		{
-			if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)186) //'D'
+			if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)186) // door collision
 			{
-				if ((map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219))
+				if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '0') //switch collision
 				{
-					if (map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)186)
+					if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '1') //switch collision
 					{
-						g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
-						bSomethingHappened = true;
+						if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+') // spikes
+						{
+							*changeHealth -= 1;
+							g_sChar.m_cLocation.Y--;
+							bSomethingHappened = true;
+						}
+						else if ((map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219))
+						{
+							if (map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)186)
+							{
+								g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
+								bSomethingHappened = true;
+							}
+							else
+							{
+								map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = ' ';
+								map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)254;
+								g_sChar.m_cLocation.Y--;
+								bSomethingHappened = true;
+							}
+						}
+						else if ((map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)219))
+						{
+							g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
+							bSomethingHappened = true;
+						}
+						else if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)64) // checking for portal
+						{
+							returnNextPosition((g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X) - (90 - mapSizeWidth));
+							bSomethingHappened = true;
+						}
+						else // if no obstacles walk normally
+						{
+							g_sChar.m_cLocation.Y--;
+							bSomethingHappened = true;
+						}
 					}
-					else
-					{
-						map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = ' ';
-						map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)254;
-						g_sChar.m_cLocation.Y--;
-						bSomethingHappened = true;
-					}
-				}
-				else if ((map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y - 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)219))
-				{
-					g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
-					bSomethingHappened = true;
-				}
-				else if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)64) // checking for portal
-				{
-					returnNextPosition((g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X) - (90 - mapSizeWidth));
-					bSomethingHappened = true;
-				}
-				else
-				{
-					g_sChar.m_cLocation.Y--;
-					bSomethingHappened = true;
 				}
 			}
 
@@ -62,36 +74,48 @@ void Movement_Tut()
 		{
 			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != (char)186)
 			{
-				if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] != (char)219))
+				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != '0')
 				{
-					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] == (char)186)
+					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] != '1')
 					{
-						g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
-						bSomethingHappened = true;
-					}
-					else
-					{
-						map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] = ' ';
-						map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] = (char)254;
-						g_sChar.m_cLocation.X--;
-						bSomethingHappened = true;
-					}
+						if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == '+')
+						{
+							*changeHealth -= 1;
+							g_sChar.m_cLocation.X--;
+							bSomethingHappened = true;
+						}
+						if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] != (char)219))
+						{
+							if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] == (char)186)
+							{
+								g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
+								bSomethingHappened = true;
+							}
+							else
+							{
+								map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] = ' ';
+								map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] = (char)254;
+								g_sChar.m_cLocation.X--;
+								bSomethingHappened = true;
+							}
 
-				}
-				else if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] == (char)219))
-				{
-					g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
-					bSomethingHappened = true;
-				}
-				else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)64) // checking for portal)
-				{
-					returnNextPosition((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth));
-					bSomethingHappened = true;
-				}
-				else
-				{
-					g_sChar.m_cLocation.X--;
-					bSomethingHappened = true;
+						}
+						else if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 2) - (90 - mapSizeWidth)] == (char)219))
+						{
+							g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
+							bSomethingHappened = true;
+						}
+						else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)64) // checking for portal)
+						{
+							returnNextPosition((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth));
+							bSomethingHappened = true;
+						}
+						else
+						{
+							g_sChar.m_cLocation.X--;
+							bSomethingHappened = true;
+						}
+					}
 				}
 			}
 
@@ -106,36 +130,48 @@ void Movement_Tut()
 		{
 			if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)186)
 			{
-				if ((map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219))
+				if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '0')
 				{
-					if (map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)186)
+					if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != '1')
 					{
-						g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
-						bSomethingHappened = true;
-					}
-					else
-					{
-						map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = ' ';
-						map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)254;
-						g_sChar.m_cLocation.Y++;
-						bSomethingHappened = true;
-					}
+						if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == '+')
+						{
+							*changeHealth -= 1;
+							g_sChar.m_cLocation.Y++;
+							bSomethingHappened = true;
+						}
+						if ((map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] != (char)219))
+						{
+							if (map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)186)
+							{
+								g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
+								bSomethingHappened = true;
+							}
+							else
+							{
+								map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = ' ';
+								map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)254;
+								g_sChar.m_cLocation.Y++;
+								bSomethingHappened = true;
+							}
 
-				}
-				else if ((map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)219))
-				{
-					g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
-					bSomethingHappened = true;
-				}
-				else if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)64) // checking for portal
-				{
-					returnNextPosition((g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X) - (90 - mapSizeWidth));
-					bSomethingHappened = true;
-				}
-				else
-				{
-					g_sChar.m_cLocation.Y++;
-					bSomethingHappened = true;
+						}
+						else if ((map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y + 2) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)219))
+						{
+							g_sChar.m_cLocation.Y = g_sChar.m_cLocation.Y;
+							bSomethingHappened = true;
+						}
+						else if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)64) // checking for portal
+						{
+							returnNextPosition((g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X) - (90 - mapSizeWidth));
+							bSomethingHappened = true;
+						}
+						else
+						{
+							g_sChar.m_cLocation.Y++;
+							bSomethingHappened = true;
+						}
+					}
 				}
 			}
 
@@ -150,35 +186,47 @@ void Movement_Tut()
 		{
 			if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != (char)186)
 			{
-				if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] != (char)219)) //if there is a block and nothing is blocking it
+				if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != '0')
 				{
-					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] == (char)186)
+					if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] != '1')
 					{
-						g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
-						bSomethingHappened = true;
+						if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == '+')
+						{
+							*changeHealth -= 1;
+							g_sChar.m_cLocation.X++;
+							bSomethingHappened = true;
+						}
+						if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] != (char)219)) //if there is a block and nothing is blocking it
+						{
+							if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] == (char)186)
+							{
+								g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
+								bSomethingHappened = true;
+							}
+							else
+							{
+								map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] = ' ';
+								map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] = (char)254;
+								g_sChar.m_cLocation.X++;
+								bSomethingHappened = true;
+							}
+						}
+						else if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] == (char)219)) //if something is blocking the block 
+						{
+							g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
+							bSomethingHappened = true;
+						}
+						else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)64) // checking for portal)
+						{
+							returnNextPosition((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth));
+							bSomethingHappened = true;
+						}
+						else
+						{
+							g_sChar.m_cLocation.X++;
+							bSomethingHappened = true;
+						}
 					}
-					else
-					{
-						map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] = ' ';
-						map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] = (char)254;
-						g_sChar.m_cLocation.X++;
-						bSomethingHappened = true;
-					}
-				}
-				else if ((map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)254) && (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 2) - (90 - mapSizeWidth)] == (char)219)) //if something is blocking the block 
-				{
-					g_sChar.m_cLocation.X = g_sChar.m_cLocation.X;
-					bSomethingHappened = true;
-				}
-				else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)64) // checking for portal)
-				{
-					returnNextPosition((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight), (g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth));
-					bSomethingHappened = true;
-				}
-				else
-				{
-					g_sChar.m_cLocation.X++;
-					bSomethingHappened = true;
 				}
 			}
 			//Beep(1440, 30);
@@ -219,14 +267,6 @@ void Movement_Tut()
 		else if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)49) //up
 		{
 			map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)48;
-		}
-		else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)48) //center
-		{
-			map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)49;
-		}
-		else if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)49) //center
-		{
-			map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)48;
 		}
 
 		bSomethingHappened = true;
