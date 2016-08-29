@@ -22,7 +22,7 @@
   ZZZZZZZZZZZZ$O           Z~:::OOO8OO~      ZOZZZZZZZZZ               WHYYYYYYYYYYYYYYYYYYYYYYYYYYYY
   ZZZZZZZZZZZZZZZZZO        :~$DO+??=+:    =ZZZZZZZZZ$O                                              
    8$ZZZZZZZZZZZZZZZZZZ   OZ:~:OO=?7+?+   DZZZZZZZZZZZ                                               
-     $OZZZZZZZZZZZZZZZZZ$ZZZ~I::,,    :D$ZZZZZZZZZZZO                                                
+     $OZZZZZZZZZZZZZZZZZ$ZZZ~I::,,    :D$ZZZZZZZZZZZO           HINT : YOU LOSE A LIFE EACH TIME YOU ANSWERED WRONGLY!                                     
      ,DZZZZZZZZZZZZZZZZZZZ$Z=::Z:::~::ZZDZZZZZZZZZ$Z                                                 
         DZZZZZZZZZZZZZZ8Z$$O$::::::~:ZZZZZZZZZZZZZ$                                                  
            $ZZZZZZZZZZZZZZZZ8:~::::~:ZO8ZZOZZZZZZZ                                                   
