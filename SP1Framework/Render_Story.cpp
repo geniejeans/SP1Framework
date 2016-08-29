@@ -16,11 +16,11 @@ void renderStory()
 	}
 	if (printStory == 0)
 	{
-		loadMap(8, map, mapFog);
+		loadMap(8, map, mapFog); //Starting story
 	}
 	if (printStory == 1)
 	{
-		loadMap(9, map, mapFog);
+		loadMap(9, map, mapFog); //Tutorial
 	}
 	if (printStory == 2)
 	{
@@ -70,13 +70,14 @@ void renderStory()
 			}
 			break;
 		case 4:
-			loadMap(18, map, mapFog); //success
+			loadMap(19, map, mapFog); //Final map 
 			if (g_abKeyPressed[K_TAB])
 			{
 				printStory = 7;
 				g_eGameState = S_GAME_5;
 				newMap = true;
 			}
+			break;
 		case 5:
 			loadMap(14, map, mapFog); //success
 			if (g_abKeyPressed[K_TAB])

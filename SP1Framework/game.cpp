@@ -63,10 +63,10 @@ char Credits[600][150];
 //timings
 static const int row = 10;
 static const int column = 2;
-string timing[row][column] = { " ", };
+string timing[row][column] = { " ", }; //Initializing array 
 double totalTime = 0.0;
-bool boardUpdate = false;
-struct game
+bool boardUpdate = false; //To update the board
+struct game //Storing time using structure 
 {
 	double LVL1;
 	double LVL2;
@@ -169,7 +169,7 @@ void update(double dt)
 			splashScreenWait(); // game logic for the splash screen
             break;
 		case S_MAIN_MENU: 
-			timer.LVL1 = 0.0;
+			timer.LVL1 = 0.0; //Resetting timing 
 			timer.LVL2 = 0.0;
 			timer.LVL3 = 0.0;
 			timer.LVL4 = 0.0;
@@ -202,7 +202,6 @@ void update(double dt)
 			break;
 		case S_GAME_4:
 			timer.LVL4 += dt;
-			totalTime = timer.LVL1 + timer.LVL2 + timer.LVL3 + timer.LVL4;
 			gameplay(); // gameplay logic when we are in the game
 			break;
 		case S_GAME_5:
@@ -345,8 +344,11 @@ void splashScreenWait()    // waits for time to pass in splash screen
 void gameplay()            // gameplay logic
 {
     processUserInput();	// checks if you should change states or do something else with the game, e.g. pause, exit
-	moveCharacter();    // moves the character, collision detection, physics, etc
-						// sound can be played here too.
+	if (g_bQuitGame == false)
+	{
+		moveCharacter();    // moves the character, collision detection, physics, etc
+							// sound can be played here too.
+	}
 }
 
 void moveCharacter()
@@ -400,9 +402,9 @@ void moveCharacter()
 		{
 			g_eGameState = S_GAME_STORY; //Proceed to success
 		}
-	default:
-		cout << "Character cannot move!!";
-		break;
+//	default:
+//		cout << "Character cannot move!!";
+//		break;
 	}
 
 }

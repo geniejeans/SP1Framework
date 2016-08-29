@@ -18,16 +18,16 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 			mapname = "Maps_Levels/Tutorial.txt"; 
 			break;
 		case 4: 
-			mapname = "Maps_Levels/Levers.txt"; //Level 1
+			mapname = "Maps_Levels/Levers.txt"; //Level 1 Map
 			break;
 		case 5: 
-			mapname = "Maps_Levels/Questions.txt"; //Level 2
+			mapname = "Maps_Levels/Questions.txt"; //Level 2 Map
 			break;
 		case 6:
-			mapname = "Maps_Levels/Boxes.txt"; //Level 3
+			mapname = "Maps_Levels/Boxes.txt"; //Level 3 Map
 			break;
 		case 7:
-			mapname = "Maps_Levels/Teleportal.txt"; //Level 4
+			mapname = "Maps_Levels/Teleportal.txt"; //Level 4 Map
 			break;
 		case 8:
 			mapname = "Maps_Text/Story/Start.txt";
@@ -62,6 +62,9 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 		case 18:
 			mapname = "Maps_Levels/Boss.txt";
 			break;
+		case 19: 
+			mapname = "Maps_Text/Story/Boss.txt"; 
+			break;
 	}
 	
 	//Function use to store data from text file to 2d array
@@ -73,59 +76,59 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 	//store to array
 	if (level == 17)
 	{
-		ifstream file(mapname);
-		int row = 0;
+		ifstream file(mapname); //Opening the file
+		int row = 0; //counting the number of rows
 		string name;
 		string time;
 		string timings2[10][2];
 		bool update = true;
 		int point = 0;
-		while (file >> name >> time)
+		while (file >> name >> time) //Reading file by spaces
 		{
 			timing[row][0] = name;
 			timing[row][1] = time;
 			row++;
 		}
-		file.close();
+		file.close(); //File closes
 		if (boardUpdate == true)
 		{
 			for (int a = 0; a < row; a++)
 			{
-				if ((totalTime > 0.0) && (totalTime < stod(timing[a][1])))
+				if ((totalTime > 0.0) && (totalTime < stod(timing[a][1]))) //if total time is more than 0.0 and less than the times in the leaderboard. Prevent any unncessary storing od timings
 				{
 					stringstream time;
-					time << totalTime;
-					time >> timings2[a][1];
-					timings2[a][0] = timing[a][0];
+					time << totalTime; //Passing the time to stringstream
+					time >> timings2[a][1]; //Passing time back to a new array
+					timings2[a][0] = timing[a][0]; //New timing will take over the position of old timing
 					a += 1;
-					point = a;
+					point = a; //Registering point as the exact point whereby the row was registerd till
 					break;
 				}
-				else
+				else //If not, the new array will copy the same timings as the old array
 				{
 					timings2[a][0] = timing[a][0];
 					timings2[a][1] = timing[a][1];
 				}
 			}
-			if (point != 0)
+			if (point != 0) //Ensuring that the board must have had changes before
 			{
-				for (point; point < row; point++)
+				for (point; point < row; point++) //Continue where the copying left off
 				{
 					timings2[point][0] = timing[point][0];
-					timings2[point][1] = timing[point - 1][1];
+					timings2[point][1] = timing[point - 1][1]; //Position will be pushed infront by 1
 				}
 			}
 
-			ofstream file2("Maps_Text/Timings2.csv");
+			ofstream file2("Maps_Text/Timings2.csv"); //Opening a new file
 			for (int i = 0; i < row; i++)
 			{
-				file2 << timings2[i][0] << " " << timings2[i][1];
+				file2 << timings2[i][0] << " " << timings2[i][1]; //Writing data into the new file
 				file2 << endl;
 			}
-			remove("Maps_Text/Timings.csv");
-			file2.close();
-			rename("Maps_Text/Timings2.csv", "Maps_Text/Timings.csv");
-			totalTime = 0.0;
+			remove("Maps_Text/Timings.csv"); //Removing old file
+			file2.close(); 
+			rename("Maps_Text/Timings2.csv", "Maps_Text/Timings.csv"); //Renaming new file's name as the old file's 
+			totalTime = 0.0; //Resetting time 
 			boardUpdate = false;
 		}
 

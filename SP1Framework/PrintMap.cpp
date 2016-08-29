@@ -15,30 +15,30 @@ void printMap(int width, int height, bool *timer, bool isMainMenu, bool instruct
 		c.Y = 14;
 	}
 	string line = " ";
-	if (leaderboard)
+	if (leaderboard) //Check for leaderboard game state 
 	{
-		if (totalTime != 0.0)
+		if (totalTime != 0.0) //Ensuring that player has played the game 
 		{
-			storeTime.at(0) = totalTime;
+			storeTime.at(0) = totalTime; //Timing has to be stored into a vector because timing will be resetted afterwards
 		}
 		for (int row = 0; row < 10; row++)
 		{
-			line = timing[row][0];
-			g_Console.writeToBuffer(c, line);
+			line = timing[row][0]; 
+			g_Console.writeToBuffer(c, line); //Printing out position
 			c.X += 50;
-				line = timing[row][1];
-				g_Console.writeToBuffer(c, line);
-				c.Y += 3;
-				c.X -= 50;
+			line = timing[row][1];
+			g_Console.writeToBuffer(c, line); //Printing out timing
+			c.Y += 3;
+			c.X -= 50;
 		}
-		if (storeTime[0] != 0.0)
+		if (storeTime[0] != 0.0) //If the game has been played 
 		{
 			stringstream convert;
-			convert << storeTime[0];
+			convert << storeTime[0]; //Passing time into a string 
 			convert >> line;
 			c.X += 15;
 			c.Y++;
-			g_Console.writeToBuffer(c, "Your time is " + line + ".", 0x0A);
+			g_Console.writeToBuffer(c, "Your time is " + line + ".", 0x0A); //Printing out stored till player restarts th game. 
 			c.X -= 10;
 			c.Y++;
 			g_Console.writeToBuffer(c, "Press Esc to return back to main menu!", 0x0A);

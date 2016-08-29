@@ -2,10 +2,10 @@
 
 void doorMapChanges_J()
 {
-	int door = 0;
+	int door = 0; //To ensure that the conditions below only run once
 	//Doors:
 	if (map[6][106] == (char)254 && door == 0) //Door1 
-	{
+	{                                          //If position with X is replaced with a box, the door will open.
 		map[6][107] = ' ';
 		map[5][82] = ' ';
 		map[5][83] = ' ';
