@@ -261,8 +261,8 @@ void render()
 			printFog = false;
 			break;
 		case S_CREDITS: //Currently editing this one
-			mapSizeWidth = 144 / 2;
-			mapSizeHeight = 560 / 2;
+			mapSizeWidth = 132 / 2;
+			mapSizeHeight = 390 / 2;
 			renderCredits();
 			printFog = false;
 			break;
