@@ -311,9 +311,10 @@ void render()
 			renderGame();
 			break;
 		case S_GAME_5:
+			checkm = 5;
 			timeToWait = false;
 			printHealth = true;
-			mapSizeWidth = 124 / 2;
+			mapSizeWidth = 126 / 2;
 			mapSizeHeight = 36 / 2;
 			refreshMap = 5;
 			renderGame();

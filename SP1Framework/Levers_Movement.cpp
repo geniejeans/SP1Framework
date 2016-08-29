@@ -125,6 +125,7 @@ void leversMovement_HS()
 	}
 	if (g_abKeyPressed[K_SPACE])
 	{
+		g_dBounceTime = g_dElapsedTime + 0.280;
 		/*--------------------- THIS IS FOR SWITCH. ALL FOUR DIRECTIONS INCLUDED-----------------------------------------------------*/
 		if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)48) //right
 		{

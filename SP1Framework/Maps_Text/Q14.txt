@@ -1,0 +1,6 @@
+How many times can you subtract 10 from 100?
+1.Once
+2.Twice
+3.Nine times
+4.Ten times
+Hint: After the first time?

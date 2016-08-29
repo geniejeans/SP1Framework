@@ -1,0 +1,7 @@
+There are 10 apples on a table. A friend places 2 apples more on the table.
+You and another friend each remove 3 apples from the table. Yet another friend
+then places 5 apples on the table. How many apples do you have?
+1.11
+2.14
+3.12
+4.3

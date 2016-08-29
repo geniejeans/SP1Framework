@@ -27,6 +27,7 @@ void qCheck()
 	if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)63)
 	{
 		saveMap();
+		// TUTORIAL QUESTIONS
 		if (checkm == 0)
 		{
 			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 5 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 42)
@@ -37,6 +38,7 @@ void qCheck()
 				check = true;
 			}
 		}
+		// QUESTIONS LEVEL
 		if (checkm == 2)
 		{
 			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 16 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 32)
@@ -116,6 +118,39 @@ void qCheck()
 				checkq = 11;
 				check = true;
 			}
+
+		}
+		// BOSS LEVEL
+		if (checkm == 5)
+		{
+			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 1 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 47)
+			{
+				clearScreen();
+				loadQ(12);
+				checkq = 12;
+				check = true;
+			}
+			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 14 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 30)
+			{
+				clearScreen();
+				loadQ(13);
+				checkq = 13;
+				check = true;
+			}
+			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 20 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 97)
+			{
+				clearScreen();
+				loadQ(14);
+				checkq = 14;
+				check = true;
+			}
+			if ((g_sChar.m_cLocation.Y) - (25 - mapSizeHeight) == 27 && (g_sChar.m_cLocation.X) - (90 - mapSizeWidth) == 74)
+			{
+				clearScreen();
+				loadQ(15);
+				checkq = 15;
+				check = true;
+			}
 		}
 	}
 }
@@ -126,7 +161,7 @@ void asnCheck()
 	{
 		if (g_abKeyPressed[K_D1])
 		{
-			if (checkq == 5 || checkq == 7 || checkq == 99)
+			if (checkq == 5 || checkq == 7 || checkq == 99 || checkq == 14)
 			{
 				Question_Asn(true);
 				check = false;
@@ -140,7 +175,7 @@ void asnCheck()
 		}
 		if (g_abKeyPressed[K_D2])
 		{
-			if (checkq == 3 || checkq == 8)
+			if (checkq == 3 || checkq == 8 || checkq == 12)
 			{
 				Question_Asn(true);
 				check = false;
@@ -154,7 +189,7 @@ void asnCheck()
 		}
 		if (g_abKeyPressed[K_D3])
 		{
-			if (checkq == 1 || checkq == 6 || checkq == 11)
+			if (checkq == 1 || checkq == 6 || checkq == 11 || checkq == 13)
 			{
 				Question_Asn(true);
 				check = false;
@@ -168,7 +203,7 @@ void asnCheck()
 		}
 		if (g_abKeyPressed[K_D4])
 		{
-			if (checkq == 2 || checkq == 4 || checkq == 9 || checkq == 10)
+			if (checkq == 2 || checkq == 4 || checkq == 9 || checkq == 10 || checkq == 15)
 			{
 				Question_Asn(true);
 				check = false;
@@ -244,6 +279,18 @@ void loadQ(int qNum)
 	case 11:
 		mapname = "Maps_Text/Q11.txt";
 		break;
+	case 12:
+		mapname = "Maps_Text/Q12.txt";
+		break;
+	case 13:
+		mapname = "Maps_Text/Q13.txt";
+		break;
+	case 14:
+		mapname = "Maps_Text/Q14.txt";
+		break;
+	case 15:
+		mapname = "Maps_Text/Q15.txt";
+		break;
 	}
 
 	//Function use to store data from text file to 2d array
@@ -317,6 +364,8 @@ void Question_resolved() //deleting doors, ? marks, and resetting the temporary 
 	{
 		map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] = (char)32;
 	}
+	/* TUTORIAL COORDINATE
+	     FOR THE DOOR  */
 	if (map[5][42] = (char)63)
 	{
 		map[5][42] = ' ';
@@ -325,6 +374,7 @@ void Question_resolved() //deleting doors, ? marks, and resetting the temporary 
 	{
 		map[5][43] = ' ';
 	}
+
 	memset(currentMap, '\0', sizeof(currentMap[0][0]) * 50 * 150);;//clean up
 	charLoX = 0;
 	charLoY = 0;
