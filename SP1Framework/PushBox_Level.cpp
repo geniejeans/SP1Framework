@@ -43,4 +43,10 @@ void doorMapChanges_J()
 	{
 		map[34][29] = ' ';
 	}
+
+	if (map[1][121] == (char)254) //secret
+	{
+		map[2][122] = ' ';
+		map[2][123] = ' ';
+	}
 }
