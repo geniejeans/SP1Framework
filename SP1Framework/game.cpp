@@ -249,8 +249,8 @@ void render()
 			printFog = false;
 			break;
 		case S_INTRUCTIONS:
-			mapSizeWidth = 116 / 2;
-			mapSizeHeight = 37 / 2;
+			mapSizeWidth = 76 / 2;
+			mapSizeHeight = 18 / 2;
 			renderInstructions();
 			printFog = false;
 			break;
