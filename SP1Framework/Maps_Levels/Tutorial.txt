@@ -9,3 +9,11 @@
 ##                 0  #                    #                                     #  A                 #                    ##
 ##                    #                    #                                     #                    #                    ##
 #############################################################################################################################
+
+#############################################################################################################################
+#                     #                    #                                     #                                          #
+#You can turn 0 into 1# stand at the ? and #    You can push the box by using    # This is a portal. Try stepping on it and #
+# and 1 into 0 using  #activate the switch #     the control keys( ^ v < > )     #   it will bring you to another portal!   #
+#     space bar       #  using space bar   #    try and push the box to the X    #                                          #
+#                     #                    #                                     #                                          #
+#############################################################################################################################
