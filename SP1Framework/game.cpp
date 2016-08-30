@@ -239,6 +239,8 @@ void render()
 			printFog = false;
             break;
 		case S_MAIN_MENU: 
+			timeToWait = false;
+			printHealth = false;
 			*changeHealth = 5;
 			printStory = 0;
 			mapSizeWidth = 88/2;
@@ -420,9 +422,9 @@ void processUserInput()
 	if (g_abKeyPressed[K_ESCAPE] && g_eGameState != S_MAIN_MENU)
 	{
 		/*g_bQuitGame = true; */
-		newMap = true;
 		g_eGameState = S_MAIN_MENU;
-		Sleep(250);
+		newMap = true;
+		//Sleep(250);
 	}
         
 
