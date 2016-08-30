@@ -413,8 +413,14 @@ void moveCharacter()
 void processUserInput()
 {
     // quits the game if player hits the escape key
-    if (g_abKeyPressed[K_ESCAPE])
-        g_bQuitGame = true;  
+	if (g_abKeyPressed[K_ESCAPE] && g_eGameState != S_MAIN_MENU)
+	{
+		/*g_bQuitGame = true; */
+		newMap = true;
+		g_eGameState = S_MAIN_MENU;
+		Sleep(250);
+	}
+        
 
 	if (g_abKeyPressed[K_LSHIFT])
 	{
