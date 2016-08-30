@@ -93,6 +93,7 @@ void init( void )
 
     // sets the initial state for the game
     g_eGameState = S_SPLASHSCREEN;
+	PlaySound(TEXT("Music/8-bit Music.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
 
     //g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2;
     //g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2;
@@ -581,7 +582,7 @@ void renderMap()
 			timeRemaining = 75;
 			break;
 		case 5: //boss
-			g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2 - 59;
+			g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2 - 61;
 			g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2 - 13;
 			timeToWait = false;
 			break;
