@@ -14,8 +14,8 @@ int checkq = 0;
 int checkm = 0;
 
 //map size
-unsigned int mwidth = 126 / 2;
-unsigned int mheight = 36 / 2;
+//unsigned int mwidth = 126 / 2;
+//unsigned int mheight = 36 / 2;
 // usage of keys
 extern bool g_abKeyPressed[K_COUNT];
 
@@ -344,36 +344,36 @@ void Question_Asn(bool isTrue) //what happens if a question is answered correctl
 
 void Question_resolved() //deleting doors, ? marks, and resetting the temporary fields
 {
-	if (map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X + 1) - (90 - mwidth)] == (char)186)
+	if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] == (char)186)
 	{
-		map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X + 1) - (90 - mwidth)] = (char)32;
+		map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X + 1) - (90 - mapSizeWidth)] = (char)32;
 	}
-	if (map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X - 1) - (90 - mwidth)] == (char)186)
+	if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] == (char)186)
 	{
-		map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X - 1) - (90 - mwidth)] = (char)32;
+		map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X - 1) - (90 - mapSizeWidth)] = (char)32;
 	}
-	if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] == (char)186)
+	if (map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)186)
 	{
-		map[(g_sChar.m_cLocation.Y + 1) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] = (char)32;
+		map[(g_sChar.m_cLocation.Y + 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)32;
 	}
-	if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] == (char)186)
+	if (map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)186)
 	{
-		map[(g_sChar.m_cLocation.Y - 1) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] = (char)32;
+		map[(g_sChar.m_cLocation.Y - 1) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)32;
 	}
-	if (map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] == (char)63)
+	if (map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] == (char)63)
 	{
-		map[(g_sChar.m_cLocation.Y) - (25 - mheight)][(g_sChar.m_cLocation.X) - (90 - mwidth)] = (char)32;
+		map[(g_sChar.m_cLocation.Y) - (25 - mapSizeHeight)][(g_sChar.m_cLocation.X) - (90 - mapSizeWidth)] = (char)32;
 	}
 	/* TUTORIAL COORDINATE
 	     FOR THE DOOR  */
-	if (map[5][42] = (char)63)
-	{
-		map[5][42] = ' ';
-	}
-	if (map[5][43] = (char)186)
-	{
-		map[5][43] = ' ';
-	}
+	//if (map[5][42] = (char)63)
+	//{
+	//	map[5][42] = ' ';
+	//}
+	//if (map[5][43] = (char)186)
+	//{
+	//	map[5][43] = ' ';
+	//}
 
 	memset(currentMap, '\0', sizeof(currentMap[0][0]) * 50 * 150);;//clean up
 	charLoX = 0;
