@@ -55,6 +55,9 @@ bool toggleFog;
 //Print Story
 int printStory = 0;
 
+//For door counting 
+int door = 0;
+
 //Store current X location of text
 int currentX = 0;
 int currentY = 0;
@@ -777,6 +780,7 @@ void resetLevel() //Causes reset
 		newMap = true;
 		renderMap();
 		Sleep(250);
+		door = 0;
 	}
 	if (healthLeft == 0)
 	{
