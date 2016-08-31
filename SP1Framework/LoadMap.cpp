@@ -151,6 +151,8 @@ void loadMap(int level, char MapArray[50][150], char FogArray[50][150])
 						MapArray[row][i] = (char)254;
 					else if (line[i] == '2' && (level == 2)) //Level control printing
 						MapArray[row][i] = (char)234;
+					else if (line[i] == '3' && (level == 2)) //Level control printing
+						MapArray[row][i] = (char)3;
 					else
 						MapArray[row][i] = line[i]; //Print the rest as normal
 					mapFog[row][i] = ' ';

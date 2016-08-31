@@ -250,7 +250,7 @@ void render()
 			break;
 		case S_INTRUCTIONS:
 			mapSizeWidth = 76 / 2;
-			mapSizeHeight = 18 / 2;
+			mapSizeHeight = 22 / 2;
 			renderInstructions();
 			printFog = false;
 			break;

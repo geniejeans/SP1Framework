@@ -9,6 +9,9 @@
 |                        Player: 2                 MOVE:                 |
 |                                               [^][v][<][>]             |
 |                                                                        |
+|                  Healthpoints: 3        (Gameover when depleted)       |
+|                                                                        |
+|                                                                        |
 |          Objects Interactable: 0               Interact:               |
 |                                1              [Space-Bar]              |
 |                                ?                                       |
