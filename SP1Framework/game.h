@@ -46,6 +46,7 @@ enum EKEYS
 	K_D4,
 	K_LSHIFT,
 	K_TAB,
+	K_F1,
 	K_COUNT //Put this last thx
 };
 
