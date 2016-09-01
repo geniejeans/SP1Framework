@@ -61,6 +61,8 @@ int printStory = 0;
 
 //For door counting 
 int door = 0;
+//Doors in tutorial 
+int tutdoor = 0; 
 
 //Store current X location of text
 int currentX = 0;
@@ -432,6 +434,7 @@ void processUserInput()
 	if (g_abKeyPressed[K_ESCAPE] && g_eGameState != S_MAIN_MENU)
 	{
 		/*g_bQuitGame = true; */
+		totalTime = 0.0;
 		g_eGameState = S_MAIN_MENU;
 		newMap = true;
 		//Sleep(250);
@@ -456,7 +459,6 @@ void processUserInput()
 			break;
 		case 5:
 			timer.LVL5 = 0.0;
-			Sleep(250);
 			break;
 		}
 		resetLevel();		// check for button press for reset of level
@@ -734,9 +736,9 @@ void renderInstructions()
 
 void renderLeaderboard()
 {
-	loadMap(16, map, mapFog);
+	loadMap(16, map, mapFog); //Render "Best time"
 	printMap(mapSizeWidth, mapSizeHeight, &timeToWait, false, false, &printHealth, printFog, mapFog, false, false);
-	loadMap(17, map, mapFog);
+	loadMap(17, map, mapFog); //Read the leaderboard timings in csv
 	if (totalTime > 0.0)
 	{
 		boardUpdate = true;
@@ -792,6 +794,7 @@ void resetLevel() //Causes reset
 		renderMap();
 		Sleep(250);
 		door = 0;
+		tutdoor = 0;
 	}
 	if (healthLeft == 0)
 	{
