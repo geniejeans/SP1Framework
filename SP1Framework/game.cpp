@@ -9,7 +9,7 @@
 
 //color of char
 // Draw the location of the character
-WORD charColor = 0x0C;
+WORD charColor = 0x0B;
 
 double  g_dElapsedTime;
 double  g_dDeltaTime;
