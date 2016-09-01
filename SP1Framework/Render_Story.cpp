@@ -90,6 +90,7 @@ void renderStory()
 	}
 	else if (*changeHealth == 0)
 	{
+		totalTime = 0.0;
 		loadMap(15, map, mapFog); //fail
 		if (g_abKeyPressed[K_TAB])
 		{
