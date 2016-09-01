@@ -5,11 +5,13 @@ extern bool  g_abKeyPressed[K_COUNT];
 
 void leversMovement_HS()
 {
-
+	
 	bool bSomethingHappened = false;
 	if (g_dBounceTime > g_dElapsedTime)
 		return;
-
+	
+	charColor = 0x0C;
+	
 	// Updating the location of the character based on the key press
 	if (g_abKeyPressed[K_UP] && g_sChar.m_cLocation.Y > 0)
 	{
@@ -26,6 +28,7 @@ void leversMovement_HS()
 						{
 							*changeHealth -= 1;
 							g_sChar.m_cLocation.Y--;
+							charColor = 0x0B;
 							bSomethingHappened = true;
 						}
 	                    // NORMAL WALKING
@@ -55,6 +58,7 @@ void leversMovement_HS()
 						{
 							*changeHealth -= 1;
 							g_sChar.m_cLocation.X--;
+							charColor = 0x0B;
 							bSomethingHappened = true;
 						}
 						else
@@ -82,6 +86,7 @@ void leversMovement_HS()
 						{
 							*changeHealth -= 1;
 							g_sChar.m_cLocation.Y++;
+							charColor = 0x0B;
 							bSomethingHappened = true;
 						}
 						// NORMAL WALKING
@@ -110,6 +115,7 @@ void leversMovement_HS()
 						{
 							*changeHealth -= 1;
 							g_sChar.m_cLocation.X++;
+							charColor = 0x0B;
 							bSomethingHappened = true;
 						}
 						// NORMAL WALKING

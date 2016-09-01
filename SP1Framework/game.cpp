@@ -7,6 +7,10 @@
 #include <iomanip>
 #include <sstream>
 
+//color of char
+// Draw the location of the character
+WORD charColor = 0x0C;
+
 double  g_dElapsedTime;
 double  g_dDeltaTime;
 bool    g_abKeyPressed[K_COUNT];
@@ -130,6 +134,7 @@ void shutdown( void )
 //--------------------------------------------------------------
 void getInput( void )
 {    
+	g_abKeyPressed[K_F1]		 = isKeyPressed(VK_F1);
 	g_abKeyPressed[K_CTRL]   = isKeyPressed(VK_CONTROL);
 	g_abKeyPressed[K_ALT]    = isKeyPressed(VK_MENU);
     g_abKeyPressed[K_UP]     = isKeyPressed(VK_UP);
@@ -418,6 +423,11 @@ void moveCharacter()
 
 void processUserInput()
 {
+	if (g_abKeyPressed[K_F1])
+	{
+		*changeHealth = 5;
+	}
+
     // quits the game if player hits the escape key
 	if (g_abKeyPressed[K_ESCAPE] && g_eGameState != S_MAIN_MENU)
 	{
@@ -600,12 +610,10 @@ void renderMap()
 
 void renderCharacter()
 {
-	// Draw the location of the character
-	WORD charColor = 0x0C;
-	if (g_sChar.m_bActive)
-	{
-		charColor = 0x0B;
-	}
+	//if (g_sChar.m_bActive)
+	//{
+	//	charColor = 0x0B;
+	//}
 	g_Console.writeToBuffer(g_sChar.m_cLocation, (char)234, charColor);
 	
 }

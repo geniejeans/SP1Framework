@@ -8,5 +8,6 @@ extern double  g_dElapsedTime;
 extern double  g_dBounceTime;
 extern unsigned int mapSizeWidth;
 extern unsigned int mapSizeHeight;
+extern WORD charColor;
 
 void leversMovement_HS();
