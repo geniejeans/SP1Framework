@@ -468,6 +468,7 @@ void processUserInput()
 				Sleep(250);
 				break;
 			case 2:
+				door = 0;
 				g_eGameState = S_GAME_3; //Loads level 3 
 				Sleep(250);
 				break;
@@ -487,6 +488,7 @@ void processUserInput()
 		switch (refreshMap)
 		{
 		case 1:
+			tutdoor = 0;
 			g_eGameState = S_GAME_TUT; //Loads level Tutorial
 			Sleep(250);
 			break;
@@ -499,6 +501,7 @@ void processUserInput()
 			Sleep(250);
 			break;
 		case 4:
+			door = 0;
 			g_eGameState = S_GAME_3; //Loads level 3 
 			Sleep(250);
 			break;
