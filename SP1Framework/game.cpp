@@ -424,6 +424,7 @@ void processUserInput()
 	if (g_abKeyPressed[K_ESCAPE] && g_eGameState != S_MAIN_MENU)
 	{
 		/*g_bQuitGame = true; */
+		totalTime = 0.0;
 		g_eGameState = S_MAIN_MENU;
 		newMap = true;
 		//Sleep(250);
