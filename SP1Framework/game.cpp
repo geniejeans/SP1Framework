@@ -9,7 +9,7 @@
 
 //color of char
 // Draw the location of the character
-WORD charColor = 0x0C;
+WORD charColor = 0x0B;
 
 double  g_dElapsedTime;
 double  g_dDeltaTime;
@@ -476,6 +476,7 @@ void processUserInput()
 				Sleep(250);
 				break;
 			case 2:
+				door = 0;
 				g_eGameState = S_GAME_3; //Loads level 3 
 				Sleep(250);
 				break;
@@ -495,6 +496,7 @@ void processUserInput()
 		switch (refreshMap)
 		{
 		case 1:
+			tutdoor = 0;
 			g_eGameState = S_GAME_TUT; //Loads level Tutorial
 			Sleep(250);
 			break;
@@ -507,6 +509,7 @@ void processUserInput()
 			Sleep(250);
 			break;
 		case 4:
+			door = 0;
 			g_eGameState = S_GAME_3; //Loads level 3 
 			Sleep(250);
 			break;
